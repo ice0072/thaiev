@@ -1,5 +1,6 @@
 account-budgeting:
   - budget_control
+  - budget_control_advance_clearing
   - budget_control_expense
   - budget_control_purchase
   - budget_control_purchase_request
@@ -15,6 +16,15 @@ account-invoicing:
 
 account-payment:
   - account_payment_paired_internal_transfer
+
+budgeting:
+  - budget_activity
+  - budget_activity_advance_clearing
+  - budget_activity_expense
+  - budget_activity_purchase
+  - budget_activity_purchase_request
+  - budget_activity_purchase_requisition
+  - budget_control_purchase_requisition
 
 contract:
   - agreement

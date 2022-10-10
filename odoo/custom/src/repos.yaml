@@ -53,6 +53,15 @@ account-payment:
   merges:
     - origin $ODOO_VERSION
 
+budgeting:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/ecosoft-odoo/budgeting.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
 contract:
   defaults:
     depth: $DEPTH_MERGE
