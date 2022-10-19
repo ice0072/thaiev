@@ -64,6 +64,7 @@ purchase-workflow:
   - purchase_request_to_requisition
   - purchase_work_acceptance
   - purchase_work_acceptance_evaluation
+  - purchase_work_acceptance_invoice_plan
   - purchase_work_acceptance_late_fines
   - purchase_work_acceptance_tier_validation
 
