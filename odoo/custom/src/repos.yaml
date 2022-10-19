@@ -123,6 +123,7 @@ purchase-workflow:
     - origin $ODOO_VERSION
     - origin refs/pull/1188/head # [14.0][ADD] purchase_invoice_plan_retention
     - origin refs/pull/1195/head # [14.0][ADD] purchase_request_substate
+    - origin refs/pull/1212/head # [14.0][IMP] purchase_work_acceptance_invoice_plan, miscellaneous improvements.
     - origin refs/pull/1216/head # [14.0][ADD] purchase_work_acceptance_tier_validation
 
 reporting-engine:
