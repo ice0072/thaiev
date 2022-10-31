@@ -16,6 +16,7 @@ account-invoicing:
 
 account-payment:
   - account_payment_paired_internal_transfer
+  - account_payment_multi_deduction
 
 budgeting:
   - budget_activity
