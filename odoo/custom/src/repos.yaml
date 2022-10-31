@@ -91,7 +91,6 @@ l10n-thailand:
     - origin refs/pull/238/head # [14.0][ADD] l10n_th_gov_purchase_request
     - origin refs/pull/239/head # [14.0][ADD] l10n_th_gov_work_acceptance
     - origin refs/pull/240/head # [14.0][ADD] l10n_th_gov_purchase_guarantee
-    - origin refs/pull/242/head # [14.0][ADD] l10n_th_gov_purchase_agreement
     - origin refs/pull/254/head # [14.0][ADD] l10n_th_account_asset_management
     - origin refs/pull/272/head # [14.0][ADD] l10n_th_account_tax (no merge to v14, to be added to v15)
 
