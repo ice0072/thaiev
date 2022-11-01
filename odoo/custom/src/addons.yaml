@@ -13,6 +13,7 @@ account-financial-tools:
   - account_asset_management
   - account_asset_number
   - account_asset_transfer
+  - account_menu
 
 account-invoicing:
   - account_invoice_payment_retention
@@ -20,6 +21,9 @@ account-invoicing:
 account-payment:
   - account_payment_paired_internal_transfer
   - account_payment_multi_deduction
+
+account-reconcile:
+  - account_reconciliation_widget
 
 budgeting:
   - budget_activity
@@ -40,6 +44,7 @@ hr-expense:
 l10n-thailand:
   - l10n_th_account_asset_management
   - l10n_th_account_tax
+  - l10n_th_account_tax_expense
   - l10n_th_account_tax_report
   - l10n_th_account_wht_cert_form
   - l10n_th_amount_to_text
