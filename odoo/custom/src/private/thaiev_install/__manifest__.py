@@ -20,5 +20,7 @@
         "l10n_th_account_asset_management",
         "account_asset_compute_batch",
         "account_payment_multi_deduction",
+        "purchase_deposit",
+        "account_financial_report",
     ],
 }
