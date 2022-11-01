@@ -4,6 +4,9 @@ account-budgeting:
   - budget_control_expense
   - budget_control_purchase
   - budget_control_purchase_request
+  
+account-financial-reporting:
+  - account_financial_report
 
 account-financial-tools:
   - account_asset_compute_batch
@@ -56,6 +59,7 @@ partner-contact:
   - partner_firstname
 
 purchase-workflow:
+  - purchase_deposit
   - purchase_invoice_plan
   - purchase_invoice_plan_retention
   - purchase_open_qty
