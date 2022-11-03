@@ -13,6 +13,7 @@ account-financial-tools:
   - account_asset_management
   - account_asset_number
   - account_asset_transfer
+  - account_lock_date_update
   - account_menu
 
 account-invoicing:
@@ -46,6 +47,7 @@ l10n-thailand:
   - l10n_th_account_asset_management
   - l10n_th_account_tax
   - l10n_th_account_tax_expense
+  - l10n_th_account_tax_multi
   - l10n_th_account_tax_report
   - l10n_th_account_wht_cert_form
   - l10n_th_amount_to_text
