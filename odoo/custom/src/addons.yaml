@@ -85,6 +85,9 @@ reporting-engine:
   - report_xlsx
   - report_xlsx_helper
 
+sale-workflow:
+  - sale_invoice_plan
+
 server-tools:
   - base_exception
 
