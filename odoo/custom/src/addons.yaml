@@ -90,6 +90,8 @@ reporting-engine:
 
 sale-workflow:
   - sale_invoice_plan
+  - sale_start_end_dates
+  - sale_rental
 
 server-tools:
   - base_exception
