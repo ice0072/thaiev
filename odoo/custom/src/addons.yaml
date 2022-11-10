@@ -103,6 +103,9 @@ server-ux:
   - base_tier_validation_forward
   - base_tier_validation_server_action
   - date_range
+  
+stock-logistics-reporting:
+  - stock_report_quantity_by_location
 
 web:
   - web_widget_x2many_2d_matrix
