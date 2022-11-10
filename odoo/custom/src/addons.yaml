@@ -5,6 +5,9 @@ account-budgeting:
   - budget_control_purchase
   - budget_control_purchase_request
   
+account-closing:
+  - account_invoice_start_end_dates
+  
 account-financial-reporting:
   - account_financial_report
 
