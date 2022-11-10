@@ -187,6 +187,15 @@ server-ux:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+    
+stock-logistics-reporting:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/stock-logistics-reporting.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
 
 web:
   defaults:
