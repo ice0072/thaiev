@@ -24,6 +24,15 @@ account-budgeting:
   merges:
     - origin $ODOO_VERSION
     - origin refs/pull/51/head # [14.0][ADD] budget_control (basic modules)
+    
+account-closing:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/account-closing.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
 
 account-financial-reporting:
   defaults:
