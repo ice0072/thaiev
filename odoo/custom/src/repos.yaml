@@ -81,6 +81,15 @@ account-reconcile:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+    
+bank-payment:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/bank-payment.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
 
 budgeting:
   defaults:
