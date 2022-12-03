@@ -30,6 +30,12 @@ account-payment:
 account-reconcile:
   - account_reconciliation_widget
 
+bank-payment:
+  - account_payment_mode
+  - account_payment_partner
+  - account_payment_order
+  - account_payment_order_tier_validation
+
 budgeting:
   - budget_activity
   - budget_activity_advance_clearing
