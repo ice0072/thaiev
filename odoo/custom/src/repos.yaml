@@ -108,6 +108,15 @@ contract:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+    
+ecosoft-addons:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/ecosoft-odoo/ecosoft-addons.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
 
 hr-expense:
   defaults:
