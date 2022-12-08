@@ -48,6 +48,9 @@ budgeting:
 contract:
   - agreement
   - agreement_legal
+  
+ecosoft-addons:
+  - account_payment_tier_validation
 
 hr-expense:
   - hr_expense_advance_clearing
