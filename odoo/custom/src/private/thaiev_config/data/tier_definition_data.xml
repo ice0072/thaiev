@@ -1,0 +1,104 @@
+<odoo noupdate="1">
+    <!-- Purchase Request -->
+    <!-- PR Tier#1 -->
+    <record id="pr_tier_1" model="tier.definition">
+        <field name="name">PR Tier#1</field>
+        <field name="sequence">20</field>
+        <field name="approve_sequence">True</field>
+        <field name="review_type">expression</field>
+        <field name="reviewer_expression">
+# PR's Manager
+rec.env["hr.employee"].search(
+[
+    ("department_id", "in", rec.requested_by.employee_ids.mapped("department_id").ids),
+    ("job_id.name", "=", "Manager")
+]).mapped("user_id")
+        </field>
+        <field name="definition_type">domain</field>
+        <field name="definition_domain">[]</field>
+        <field name="has_comment">True</field>
+        <field name="server_action_id" ref="thaiev_config.ir_server_action_pr_approve"/>
+        <field name="rejected_server_action_id" ref="thaiev_config.ir_server_action_pr_reject"/>
+    </record>
+    <!-- PR Tier#2 -->
+    <record id="pr_tier_2" model="tier.definition">
+        <field name="name">PR Tier#2</field>
+        <field name="sequence">10</field>
+        <field name="approve_sequence">True</field>
+        <field name="review_type">expression</field>
+        <field name="reviewer_expression">
+# PR's Director
+rec.env["hr.employee"].search(
+[
+    ("department_id", "in", rec.requested_by.employee_ids.mapped("department_id").ids),
+    ("job_id.name", "=", "Director")
+]).mapped("user_id")
+        </field>
+        <field name="definition_type">domain</field>
+        <field name="definition_domain">[]</field>
+        <field name="has_comment">True</field>
+        <field name="server_action_id" ref="thaiev_config.ir_server_action_pr_approve"/>
+        <field name="rejected_server_action_id" ref="thaiev_config.ir_server_action_pr_reject"/>
+    </record>
+
+    <!-- Purchase Order -->
+    <!-- PO Tier#1 -->
+    <record id="po_tier_1" model="tier.definition">
+        <field name="name">PO Tier#1</field>
+        <field name="sequence">20</field>
+        <field name="approve_sequence">True</field>
+        <field name="review_type">expression</field>
+        <field name="reviewer_expression">
+# PO's Manager
+rec.env["hr.employee"].search(
+[
+    ("department_id.name", "=", "Purchase"),
+    ("job_id.name", "=", "Manager")
+]).mapped("user_id")
+        </field>
+        <field name="definition_type">domain</field>
+        <field name="definition_domain">[]</field>
+        <field name="has_comment">True</field>
+        <field name="server_action_id" ref="thaiev_config.ir_server_action_po_approve"/>
+        <field name="rejected_server_action_id" ref="thaiev_config.ir_server_action_po_reject"/>
+    </record>
+    <!-- PO Tier#2 (Amount <= 100,000) -->
+    <record id="po_tier_2_1" model="tier.definition">
+        <field name="name">PO Tier#2</field>
+        <field name="sequence">10</field>
+        <field name="approve_sequence">True</field>
+        <field name="review_type">expression</field>
+        <field name="reviewer_expression">
+# PR's Director
+rec.env["hr.employee"].search(
+[
+    ("department_id", "in", rec.order_line.mapped("purchase_request_lines.request_id.requested_by.employee_ids.department_id").ids),
+    ("job_id.name", "=", "Director")
+]).mapped("user_id")
+        </field>
+        <field name="definition_type">domain</field>
+        <field name="definition_domain">[("amount_total", "<=", 100000)]</field>
+        <field name="has_comment">True</field>
+        <field name="server_action_id" ref="thaiev_config.ir_server_action_po_approve"/>
+        <field name="rejected_server_action_id" ref="thaiev_config.ir_server_action_po_reject"/>
+    </record>
+    <!-- PO Tier#2 (Amount > 100,000) -->
+    <record id="po_tier_2_2" model="tier.definition">
+        <field name="name">PO Tier#2</field>
+        <field name="sequence">10</field>
+        <field name="approve_sequence">True</field>
+        <field name="review_type">expression</field>
+        <field name="reviewer_expression">
+# CEO
+rec.env["hr.employee"].search(
+[
+    ("job_id.name", "=", "CEO")
+]).mapped("user_id")
+        </field>
+        <field name="definition_type">domain</field>
+        <field name="definition_domain">[("amount_total", ">", 100000)]</field>
+        <field name="has_comment">True</field>
+        <field name="server_action_id" ref="thaiev_config.ir_server_action_po_approve"/>
+        <field name="rejected_server_action_id" ref="thaiev_config.ir_server_action_po_reject"/>
+    </record>
+</odoo>
