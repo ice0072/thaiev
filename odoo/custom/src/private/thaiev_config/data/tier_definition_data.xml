@@ -77,7 +77,7 @@ rec.env["hr.employee"].search(
 ]).mapped("user_id")
         </field>
         <field name="definition_type">domain</field>
-        <field name="definition_domain">[("amount_total", "<=", 100000)]</field>
+        <field name="definition_domain">[("amount_total", "&lt;=", 100000)]</field>
         <field name="has_comment">True</field>
         <field name="server_action_id" ref="thaiev_config.ir_server_action_po_approve"/>
         <field name="rejected_server_action_id" ref="thaiev_config.ir_server_action_po_reject"/>
@@ -96,7 +96,7 @@ rec.env["hr.employee"].search(
 ]).mapped("user_id")
         </field>
         <field name="definition_type">domain</field>
-        <field name="definition_domain">[("amount_total", ">", 100000)]</field>
+        <field name="definition_domain">[("amount_total", "&gt;", 100000)]</field>
         <field name="has_comment">True</field>
         <field name="server_action_id" ref="thaiev_config.ir_server_action_po_approve"/>
         <field name="rejected_server_action_id" ref="thaiev_config.ir_server_action_po_reject"/>
