@@ -2,7 +2,7 @@
     <!-- Purchase Request -->
     <record id="ir_server_action_pr_approve" model="ir.actions.server">
         <field name="name">Purchase Request: Approved</field>
-        <field name="model_id" ref="purchase_request.model_purchase_request"/>
+        <field name="model_id" ref="purchase_request.model_purchase_request" />
         <field name="state">code</field>
         <field name="code">
 if record.validated:
@@ -11,7 +11,7 @@ if record.validated:
     </record>
     <record id="ir_server_action_pr_reject" model="ir.actions.server">
         <field name="name">Purchase Request: Rejected</field>
-        <field name="model_id" ref="purchase_request.model_purchase_request"/>
+        <field name="model_id" ref="purchase_request.model_purchase_request" />
         <field name="state">code</field>
         <field name="code">
 if record.rejected:
@@ -22,7 +22,7 @@ if record.rejected:
     <!-- Purchase Order -->
     <record id="ir_server_action_po_approve" model="ir.actions.server">
         <field name="name">Purchase Order: Approved</field>
-        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="model_id" ref="purchase.model_purchase_order" />
         <field name="state">code</field>
         <field name="code">
 if record.validated:
@@ -31,7 +31,7 @@ if record.validated:
     </record>
     <record id="ir_server_action_po_reject" model="ir.actions.server">
         <field name="name">Purchase Order: Rejected</field>
-        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="model_id" ref="purchase.model_purchase_order" />
         <field name="state">code</field>
         <field name="code">
 if record.rejected:

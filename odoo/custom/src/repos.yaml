@@ -24,7 +24,7 @@ account-budgeting:
   merges:
     - origin $ODOO_VERSION
     - origin refs/pull/51/head # [14.0][ADD] budget_control (basic modules)
-    
+
 account-closing:
   defaults:
     depth: $DEPTH_MERGE
@@ -71,7 +71,6 @@ account-payment:
   merges:
     - origin $ODOO_VERSION
     - origin refs/pull/490/head # [14.0][ENH] account_payment_multi_deduction: add analytic on payment register wizard
-    
 
 account-reconcile:
   defaults:
@@ -81,7 +80,7 @@ account-reconcile:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    
+
 bank-payment:
   defaults:
     depth: $DEPTH_MERGE
@@ -108,7 +107,7 @@ contract:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    
+
 ecosoft-addons:
   defaults:
     depth: $DEPTH_MERGE
@@ -179,7 +178,7 @@ reporting-engine:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    
+
 sale-workflow:
   defaults:
     depth: $DEPTH_MERGE
@@ -206,7 +205,7 @@ server-ux:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    
+
 stock-logistics-reporting:
   defaults:
     depth: $DEPTH_MERGE
