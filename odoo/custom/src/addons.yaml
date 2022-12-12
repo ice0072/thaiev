@@ -4,10 +4,10 @@ account-budgeting:
   - budget_control_expense
   - budget_control_purchase
   - budget_control_purchase_request
-  
+
 account-closing:
   - account_invoice_start_end_dates
-  
+
 account-financial-reporting:
   - account_financial_report
 
@@ -48,7 +48,7 @@ budgeting:
 contract:
   - agreement
   - agreement_legal
-  
+
 ecosoft-addons:
   - account_payment_tier_validation
 
@@ -116,7 +116,7 @@ server-ux:
   - base_tier_validation_forward
   - base_tier_validation_server_action
   - date_range
-  
+
 stock-logistics-reporting:
   - stock_report_quantity_by_location
 
