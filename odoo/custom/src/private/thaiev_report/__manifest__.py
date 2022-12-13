@@ -9,7 +9,11 @@
     "category": "Thai EV",
     "author": "Ecosoft",
     "installable": True,
-    "depends": ["thaiev_install"],
+    "depends": [
+        "account",
+        "purchase",
+        "sale",
+    ],
     "data": [
         "report/sale_report_templates.xml",
         "report/purchase_order_templates.xml",
