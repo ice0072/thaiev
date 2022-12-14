@@ -105,8 +105,10 @@
 
                 <h2 class="mt16">
                     <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
-                        <span t-if="doc.state not in ['draft','sent']">Order # </span>
-                        <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                        <span
+                            t-if="doc.state not in ['draft','sent']"
+                        >Sale Order # </span>
+                        <span t-if="doc.state in ['draft','sent']">Sale Order # </span>
                     </t>
                     <t t-if="env.context.get('proforma', False) or is_pro_forma">
                         <span>Pro-Forma Invoice # </span>
@@ -130,7 +132,7 @@
                         t-if="doc.date_order and doc.state in ['draft','sent']"
                         class="col-auto col-3 mw-100 mb-2"
                     >
-                        <strong>Quotation Date:</strong>
+                        <strong>Order Date:</strong>
                         <p
                             class="m-0"
                             t-field="doc.date_order"
@@ -346,6 +348,32 @@
                     </div>
                     <div class="offset-8 text-center">
                         <p t-field="doc.signed_by" />
+                    </div>
+                </div>
+
+                <div t-if="not doc.signature" class="mt32 ml64 mr4" name="signature">
+                    <div class="offset-8">
+                        <![CDATA[
+                        &nbsp;
+                        ]]>
+                        <p />
+                        <![CDATA[
+                        &nbsp;
+                        ]]>
+                        <strong>Signature</strong>
+                    </div>
+                    <div class="offset-8">
+                        <![CDATA[
+                        &nbsp;
+                        ]]>
+                        <p />
+                        <![CDATA[
+                        &nbsp;
+                        ]]>
+                        <p />
+                    </div>
+                    <div class="offset-8">
+                        <p t-field="doc.partner_id.name" />
                     </div>
                 </div>
 
