@@ -179,11 +179,11 @@
                 </div>
                 <div class="col-6 text-center">
                     <t t-if="o.validated">
-                        <p t-field="o.reviewer_ids[-1]" />
+                        <p t-esc="o.review_ids[-1].reviewer_ids[0].name or ''" />
                     </t>
                     <t t-if="not o.validated">
-                        <p
-                            ><![CDATA[
+                        <p>
+                            <![CDATA[
                             &nbsp;
                             ]]>
                         </p>
