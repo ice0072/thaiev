@@ -179,7 +179,7 @@
                 </div>
                 <div class="col-6 text-center">
                     <t t-if="o.validated">
-                        <p t-esc="o.review_ids[-1].reviewer_ids[0].name or ''" />
+                        <p t-esc="o.review_ids[-1].done_by.name" />
                     </t>
                     <t t-if="not o.validated">
                         <p>
