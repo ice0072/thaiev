@@ -30,9 +30,6 @@
         <field name="report_name">thaiev_report.report_invoice_with_payments</field>
         <field name="report_file">thaiev_report.report_invoice_with_payments</field>
         <field name="print_report_name">(object._get_report_base_filename())</field>
-        <field
-            name="attachment"
-        >(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')</field>
     </record>
 
     <!-- for Delivery Note/Tax Invoice print button -->
