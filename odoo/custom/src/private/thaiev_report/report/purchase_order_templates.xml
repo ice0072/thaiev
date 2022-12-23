@@ -32,7 +32,7 @@
                     <div>
                         <span t-field="doc.company_id.city" />
                         <span t-field="doc.company_id.state_id.name" />
-                        <span t-field="doc.partner_id.zip" />
+                        <span t-field="doc.company_id.zip" />
                     </div>
                     <p style="margin: 0">Tax ID: <span
                                 t-field="doc.company_id.vat"
