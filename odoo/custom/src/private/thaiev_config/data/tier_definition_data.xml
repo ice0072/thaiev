@@ -91,10 +91,10 @@ rec.env["hr.employee"].search(
         <field name="approve_sequence">True</field>
         <field name="review_type">expression</field>
         <field name="reviewer_expression">
-# PR's Director
+# PO's Director
 rec.env["hr.employee"].search(
 [
-    ("department_id", "in", rec.order_line.mapped("purchase_request_lines.request_id.requested_by.employee_ids.department_id").ids),
+    ("department_id.name", "=", "Purchase"),
     ("job_id.name", "=", "Director")
 ]).mapped("user_id")
         </field>

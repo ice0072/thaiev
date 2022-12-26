@@ -26,7 +26,7 @@ if record.rejected:
         <field name="state">code</field>
         <field name="code">
 if record.validated:
-    action = record.button_confirm()
+    action = record.with_context(bypass_check_approval_allowed=True).button_approve()
         </field>
     </record>
     <record id="ir_server_action_po_reject" model="ir.actions.server">
@@ -35,7 +35,6 @@ if record.validated:
         <field name="state">code</field>
         <field name="code">
 if record.rejected:
-    record.write({"cancel_confirm": True})  # to skip cancel
     action = record.button_cancel()
         </field>
     </record>
