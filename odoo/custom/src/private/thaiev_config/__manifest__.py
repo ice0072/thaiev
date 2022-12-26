@@ -13,7 +13,9 @@
         "purchase",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "data/ir_actions_server_data.xml",
         "data/tier_definition_data.xml",
+        "views/account_views.xml",
     ],
 }
