@@ -205,6 +205,7 @@ server-ux:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+    - origin refs/pull/447/head # base_tier_validation_server_action: Fix reject error
 
 stock-logistics-reporting:
   defaults:
