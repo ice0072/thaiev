@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_action_res_partner_bank_form"
+        action="base.action_res_partner_bank_account_form"
+        parent="account.account_banks_menu"
+        sequence="2"
+    />
+</odoo>
