@@ -8,7 +8,7 @@
     "license": "AGPL-3",
     "category": "NxPO",
     "author": "Ecosoft",
-    "depends": ["base_tier_validation"],
+    "depends": ["base_tier_validation", "account"],
     "data": [],
     "maintainers": ["Saran440"],
     "development_status": "Alpha",
