@@ -10,5 +10,5 @@ class AccountPayment(models.Model):
     @api.model
     def _get_under_validation_exceptions(self):
         res = super()._get_under_validation_exceptions()
-        res.extend(["tax_invoice_ids", "wht_move_ids"])
+        res.extend(["tax_invoice_ids", "wht_move_ids", "to_clear_tax"])
         return res
