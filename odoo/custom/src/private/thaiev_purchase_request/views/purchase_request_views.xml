@@ -26,6 +26,11 @@
                     name="statusbar_visible"
                 >draft,to_approve,approved,done,rejected</attribute>
             </field>
+            <xpath expr="//header/button[@name='button_draft']" position="attributes">
+                <attribute name="groups">
+                    purchase_request.group_purchase_request_user
+                </attribute>
+            </xpath>
         </field>
     </record>
 </odoo>
