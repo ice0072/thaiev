@@ -1,0 +1,4 @@
+id,key,value
+base.web_m2x_options_create,web_m2x_options.create,False
+base.web_m2x_options_create_edit,web_m2x_options.create_edit,False
+base.report_url,report.url,http://0.0.0.0:8069

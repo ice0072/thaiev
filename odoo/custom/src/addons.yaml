@@ -122,3 +122,4 @@ stock-logistics-reporting:
 
 web:
   - web_widget_x2many_2d_matrix
+  - web_m2x_options
