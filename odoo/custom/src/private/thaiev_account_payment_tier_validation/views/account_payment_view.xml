@@ -16,7 +16,7 @@
                     <filter
                         name="to_approve"
                         string="To Approve"
-                        domain="[('validated','=',False), ('rejected','=',False), ('state','=','posted')]"
+                        domain="[('validated','=',False), ('rejected','=',False), ('state','!=','cancel')]"
                     />
                     <filter
                         name="rejected"
