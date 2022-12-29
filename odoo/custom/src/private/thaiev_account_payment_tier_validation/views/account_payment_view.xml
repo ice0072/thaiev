@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_account_payment_search" model="ir.ui.view">
+            <field name="name">account.payment.search</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_search" />
+            <field name="arch" type="xml">
+                <filter name="state_posted" position="after">
+                    <separator />
+                    <filter
+                        name="validated"
+                        string="Validated"
+                        domain="[('validated','=',True)]"
+                    />
+                    <filter
+                        name="to_approve"
+                        string="To Approve"
+                        domain="[('validated','=',False), ('rejected','=',False), ('state','!=','cancel')]"
+                    />
+                    <filter
+                        name="rejected"
+                        string="Rejected"
+                        domain="[('rejected','=',True)]"
+                    />
+                </filter>
+            </field>
+        </record>
+    </data>
+</odoo>
