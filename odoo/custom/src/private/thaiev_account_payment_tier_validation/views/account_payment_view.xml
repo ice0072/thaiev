@@ -10,7 +10,7 @@
                     <filter
                         name="to_approve"
                         string="To Approve"
-                        domain="[('validated','=',False), ('rejected','=',False), ('state','!=','cancel')]"
+                        domain="[('review_ids','!=',False),('state','!=','cancel'),('validated','=',False)]"
                     />
                 </filter>
             </field>
