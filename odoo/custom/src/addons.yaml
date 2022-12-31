@@ -106,6 +106,7 @@ sale-workflow:
   - sale_rental
 
 server-tools:
+  - auto_backup
   - base_exception
   - base_sequence_option
 
@@ -121,5 +122,6 @@ stock-logistics-reporting:
   - stock_report_quantity_by_location
 
 web:
+  - web_environment_ribbon
   - web_widget_x2many_2d_matrix
   - web_m2x_options
