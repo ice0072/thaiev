@@ -98,7 +98,7 @@
                         <t t-elif="o.move_type == 'out_receipt'"><strong
                             >Receipt Date:</strong></t>
                         <t t-else=""><strong>Date:</strong></t>
-                        <t t-if="print_with_payments">
+                        <t t-if="print_with_payments or print_delivery">
                             <p class="m-0" t-field="o.invoice_date" />
                         </t>
                         <t t-if="print_receipt and o.payment_state == 'paid'">
