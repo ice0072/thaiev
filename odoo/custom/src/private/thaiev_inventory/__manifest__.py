@@ -8,7 +8,7 @@
     "category": "Thai EV",
     "author": "Ecosoft",
     "installable": True,
-    "depends": ["base", "product"],
+    "depends": ["product"],
     "data": [
         "data/ir_module_category_data.xml",
         "data/product_template_views.xml",
