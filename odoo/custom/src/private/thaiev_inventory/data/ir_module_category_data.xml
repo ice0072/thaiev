@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record model="res.groups" id="show_cost_group">
+            <field name="name">Show Cost of Product</field>
+            <field name="category_id" ref="base.module_category_usability" />
+        </record>
+    </data>
+</odoo>
