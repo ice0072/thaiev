@@ -2,8 +2,8 @@
 <odoo>
     <data>
         <record model="res.groups" id="show_cost_group">
-            <field name="name">Show Standard Price</field>
-            <field name="category_id" ref="base.module_category_inventory" />
+            <field name="name">Show Cost of Product</field>
+            <field name="category_id" ref="base.module_category_usability" />
         </record>
     </data>
 </odoo>
