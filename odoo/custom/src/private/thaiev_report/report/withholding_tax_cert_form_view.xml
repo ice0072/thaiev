@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="withholding_layout_report"
+        inherit_id="l10n_th_account_wht_cert_form.withholding_layout_report"
+    >
+        <xpath expr="//p[@class='text_amount']" position="after">
+            <t t-set="year" t-value="(int((o.date).strftime('%Y')))+543" />
+            <p
+                class="signature_date"
+                style="position: fixed; top: 1433px; right: 270px;"
+            >
+                <span><t t-esc="o.date.strftime('%d')" /></span>
+                <span style="padding-left:70px;"><t
+                        t-esc="o.date.strftime('%m')"
+                    /></span>
+                <span style="padding-left:60px;"><t t-esc="year" /></span>
+            </p>
+        </xpath>
+    </template>
+
+</odoo>
