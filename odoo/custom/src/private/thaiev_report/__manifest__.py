@@ -20,5 +20,6 @@
         "report/report_payment_receipt_templates.xml",
         "report/report_invoice_template.xml",
         "report/report.xml",
+        "report/withholding_tax_cert_form_view.xml",
     ],
 }
