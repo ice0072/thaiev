@@ -186,7 +186,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td name="td_taxes_label">Taxes</td>
+                            <td name="td_taxes_label">VAT 7%</td>
                             <td class="text-right">
                                 <span
                                         t-field="doc.amount_tax"
