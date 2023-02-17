@@ -19,3 +19,10 @@ class AccountMove(models.Model):
         for rec in reconciles:
             payment.append(rec["ref"].split()[0])
         self.payment_info_name = " ".join(payment)
+
+    def button_draft(self):
+        """ Overwrite function in account_asset_management module """
+        invoices = self.filtered(lambda r: r.is_purchase_document())
+        if invoices:
+            invoices.line_ids.asset_id.sudo().unlink()
+        super().button_draft()
