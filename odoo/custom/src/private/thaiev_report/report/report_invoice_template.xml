@@ -152,6 +152,14 @@
                         <strong>Reference:</strong>
                         <p class="m-0" t-field="o.ref" />
                     </div>
+                    <div
+                        class="col-auto col-3 mw-100 mb-2"
+                        t-if="print_receipt"
+                        name="invoice_reference"
+                    >
+                        <strong>Invoice Reference:</strong>
+                        <p class="m-0" t-field="o.name" />
+                    </div>
                 </div>
 
                 <t
