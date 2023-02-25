@@ -119,6 +119,7 @@ server-ux:
   - date_range
 
 stock-logistics-reporting:
+  - stock_card_report
   - stock_report_quantity_by_location
 
 web:
