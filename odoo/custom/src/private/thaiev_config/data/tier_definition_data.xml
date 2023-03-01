@@ -98,8 +98,8 @@ rec.env["hr.employee"].search(
     ("job_id.name", "=", "Director")
 ]).mapped("user_id")
         </field>
-        <field name="definition_type">domain</field>
-        <field name="definition_domain">[("amount_total", "&lt;=", 100000)]</field>
+        <field name="definition_type">formula</field>
+        <field name="python_code">rec.amount_total_currency &lt;= 100000</field>
         <field name="has_comment">True</field>
         <field
             name="server_action_id"
@@ -124,8 +124,8 @@ rec.env["hr.employee"].search(
     ("job_id.name", "=", "CEO")
 ]).mapped("user_id")
         </field>
-        <field name="definition_type">domain</field>
-        <field name="definition_domain">[("amount_total", "&gt;", 100000)]</field>
+        <field name="definition_type">formula</field>
+        <field name="python_code">rec.amount_total_currency &gt; 100000</field>
         <field name="has_comment">True</field>
         <field
             name="server_action_id"
@@ -153,8 +153,8 @@ rec.env["hr.employee"].search(
     ("job_id.name", "=", "Manager")
 ]).mapped("user_id")
         </field>
-        <field name="definition_type">domain</field>
-        <field name="definition_domain">[("amount", "&lt;=", 50000)]</field>
+        <field name="definition_type">formula</field>
+        <field name="python_code">rec.amount_currency &lt;= 50000</field>
         <field name="has_comment">True</field>
     </record>
     <!-- Payment Tier#1 (Amount > 50000 and Amount <= 100000) -->
@@ -172,10 +172,10 @@ rec.env["hr.employee"].search(
     ("job_id.name", "=", "Director")
 ]).mapped("user_id")
         </field>
-        <field name="definition_type">domain</field>
+        <field name="definition_type">formula</field>
         <field
-            name="definition_domain"
-        >[("amount", "&gt;", 50000), ("amount", "&lt;=", 100000)]</field>
+            name="python_code"
+        >rec.amount_currency &gt; 50000 and rec.amount_currency &lt;= 100000</field>
         <field name="has_comment">True</field>
     </record>
     <!-- Payment Tier#1 (Amount > 100000) -->
@@ -193,8 +193,8 @@ rec.env["hr.employee"].search(
     ("job_id.name", "=", "CFO")
 ]).mapped("user_id")
         </field>
-        <field name="definition_type">domain</field>
-        <field name="definition_domain">[("amount", "&gt;", 100000)]</field>
+        <field name="definition_type">formula</field>
+        <field name="python_code">rec.amount_currency &gt; 100000</field>
         <field name="has_comment">True</field>
     </record>
     <!-- Payment Tier#2 (Amount <= 50000) -->
@@ -212,8 +212,8 @@ rec.env["hr.employee"].search(
     ("job_id.name", "=", "Director")
 ]).mapped("user_id")
         </field>
-        <field name="definition_type">domain</field>
-        <field name="definition_domain">[("amount", "&lt;=", 50000)]</field>
+        <field name="definition_type">formula</field>
+        <field name="python_code">rec.amount_currency &lt;= 50000</field>
         <field name="has_comment">True</field>
     </record>
     <!-- Payment Tier#2 (Amount > 50000 and amount <= 100000) -->
@@ -231,10 +231,10 @@ rec.env["hr.employee"].search(
     ("job_id.name", "=", "CFO")
 ]).mapped("user_id")
         </field>
-        <field name="definition_type">domain</field>
+        <field name="definition_type">formula</field>
         <field
-            name="definition_domain"
-        >[("amount", "&gt;", 50000), ("amount", "&lt;=", 100000)]</field>
+            name="python_code"
+        >rec.amount_currency &gt; 50000 and rec.amount_currency &lt;= 100000</field>
         <field name="has_comment">True</field>
     </record>
     <!-- Payment Tier#2 (amount > 100000) -->
@@ -251,8 +251,8 @@ rec.env["hr.employee"].search(
     ("job_id.name", "=", "CEO")
 ]).mapped("user_id")
         </field>
-        <field name="definition_type">domain</field>
-        <field name="definition_domain">[("amount_total", "&gt;", 100000)]</field>
+        <field name="definition_type">formula</field>
+        <field name="python_code">rec.amount_currency &gt; 100000</field>
         <field name="has_comment">True</field>
     </record>
 </odoo>
