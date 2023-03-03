@@ -7,7 +7,9 @@ from odoo import fields, models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
+    old_invoice_amount = fields.Monetary(string="Old Invoice Amount", widget="monetary")
     payment_info_name = fields.Char(compute="_compute_payment_info_name")
+    reason = fields.Char(string="Reason")
 
     def _compute_payment_info_name(self):
         """

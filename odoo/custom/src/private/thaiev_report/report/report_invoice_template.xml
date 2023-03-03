@@ -299,7 +299,10 @@
                     </tbody>
                 </table>
 
-                <div class="clearfix">
+                <div
+                    t-if="o.move_type not in ('out_refund', 'in_refund')"
+                    class="clearfix"
+                >
                     <div id="total" class="row">
                         <div
                             t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto"
@@ -393,6 +396,120 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- For credit note -->
+                <div t-if="o.move_type in ('out_refund', 'in_refund')" class="clearfix">
+                    <div id="total" class="row">
+                        <div
+                            t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto"
+                        >
+                            <table
+                                class="table table-sm"
+                                style="page-break-inside: avoid;"
+                            >
+                                <tr>
+                                    <td><strong>Old Invoice Value</strong></td>
+                                    <td class="text-right">
+                                        <span
+                                            t-esc="o.old_invoice_amount"
+                                            t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                        />
+                                    </td>
+                                </tr>
+                                <tr class="border-black o_total_value">
+                                    <td><strong>Correct Value</strong></td>
+                                    <td class="text-right">
+                                        <span
+                                            t-esc="o.old_invoice_amount - o.amount_untaxed"
+                                            t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                        />
+                                    </td>
+                                </tr>
+                                <tr class="border-black o_subtotal" style="">
+                                    <td><strong>Subtotal/Difference Value</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="o.amount_untaxed" />
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                    <tr style="">
+                                        <t
+                                            t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) in [0, 1] and float_compare(o.amount_untaxed, amount_by_group[2], precision_rounding=o.currency_id.rounding) == 0"
+                                        >
+                                            <td><span
+                                                    class="text-nowrap"
+                                                    t-esc="amount_by_group[0]"
+                                                /></td>
+                                            <td class="text-right o_price_total">
+                                                <span
+                                                    class="text-nowrap"
+                                                    t-esc="amount_by_group[3]"
+                                                />
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td>
+                                                <span t-esc="amount_by_group[0]" />
+                                            </td>
+                                            <td class="text-right o_price_total">
+                                                <span
+                                                    class="text-nowrap"
+                                                    t-esc="amount_by_group[3]"
+                                                />
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                                <tr class="border-black o_total">
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-right">
+                                        <span
+                                            class="text-nowrap"
+                                            t-field="o.amount_total"
+                                        />
+                                    </td>
+                                </tr>
+                                <t t-if="print_with_payments">
+                                    <t t-if="o.payment_state != 'invoicing_legacy'">
+                                        <t
+                                            t-set="payments_vals"
+                                            t-value="o.sudo()._get_reconciled_info_JSON_values()"
+                                        />
+                                        <t
+                                            t-foreach="payments_vals"
+                                            t-as="payment_vals"
+                                        >
+                                            <tr>
+                                                <td>
+                                                    <i
+                                                        class="oe_form_field text-right oe_payment_label"
+                                                    >Paid on <t
+                                                            t-esc="payment_vals['date']"
+                                                            t-options='{"widget": "date"}'
+                                                        /></i>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span
+                                                        t-esc="payment_vals['amount']"
+                                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <t t-if="len(payments_vals) > 0">
+                                            <tr class="border-black">
+                                                <td><strong>Amount Due</strong></td>
+                                                <td class="text-right">
+                                                    <span t-field="o.amount_residual" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <p
                     t-if="o.move_type in ('out_invoice', 'in_refund') and o.payment_reference"
                     name="payment_communication"
@@ -414,6 +531,9 @@
                     <strong>Incoterm: </strong><span
                         t-field="o.invoice_incoterm_id.code"
                     /> - <span t-field="o.invoice_incoterm_id.name" />
+                </p>
+                <p t-if="o.move_type in ('out_refund', 'in_refund')">
+                    <strong>Reason: </strong><span t-field="o.reason" />
                 </p>
             </div>
 
