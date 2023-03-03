@@ -9,6 +9,8 @@
     "author": "Ecosoft",
     "installable": True,
     "depends": ["account"],
-    "data": [],
+    "data": [
+        "views/account_move_views.xml",
+    ],
     "maintainers": ["Theerayut Attajak"],
 }
