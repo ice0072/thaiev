@@ -70,7 +70,7 @@ account-payment:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    - origin refs/pull/490/head # [14.0][ENH] account_payment_multi_deduction: add analytic on payment register wizard
+    - origin refs/pull/609/head # [14.0][FIX] account_payment_multi_deduction: allow edit move multi write-off
 
 account-reconcile:
   defaults:
