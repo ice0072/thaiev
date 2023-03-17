@@ -1,0 +1,125 @@
+<odoo>
+    <template id="tev_quatation_custom_form">
+        <div class="article" style="background-image:url('/tev_form/static/src/img/quatation.png'); background-size:300mm 424mm; width:300mm; height:424mm;">
+            <div class="row">
+                <div class="col-9"/>
+                <div class="col-3" name="col_left" style="padding-top: 150px; padding-left: 40px;">
+                    <p t-field="o.name" />
+                    <p t-field="o.date_order" />
+                </div>
+            </div>
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-2"/>
+                <div class="col-6" name="col_left" style="padding-left: 50px;">
+                    <p t-field="o.partner_id.name" />
+                    <p style="margin-top:-15px;" t-field="o.partner_id.name" />
+                    <p style="margin-top:-15px;">
+                        <span t-field="o.partner_id.street" />
+                        <span t-field="o.partner_id.street" />
+                    </p>
+                    <t t-if="o.partner_id.mobile">
+                        <p style="margin-top:-10px;" t-field="o.partner_id.mobile" />
+                    </t>
+                </div>
+                <div class="col-3" name="col_left" style="padding-left: 50px;">
+                    <t t-if='o.commitment_date'>
+                        <p style="margin-top:50px;" t-field="o.commitment_date" />
+                    </t>
+                    <t t-else="">
+                        <p style="margin-top:10px;color:white;" t-esc="'.'" />
+                    </t>
+
+                    <t t-if='o.validity_date'>
+                        <p t-field="o.validity_date" style="padding-left: 100px;"/>
+                    </t>
+                    <t t-else="">
+                        <p style="margin-top:10px;color:white;" t-esc="'.'" />
+                    </t>
+                    <t t-if='o.payment_term_id'>
+                        <p style="margin-top:-10px;" t-field="o.payment_term_id.name" />
+                    </t>
+                </div>
+            </div>
+            <div class="article" style="
+                                        font-size: 14px;
+                                        min-width: 1015px;
+                                        max-width:1015px;
+                                        min-height:470px;
+                                        max-height:470px;
+                                        margin-left: 60px;
+                                        margin-top: 70px;
+                                        position: absolute;
+                                        top: 340px;">
+                <table style="table-layout: fixed;">
+                    <t t-foreach="o.order_line" t-as="line">
+                        <tr>
+                            <td style="width: 160px;max-width:160px; min-width:160px;">
+                                <span t-field="line.product_id.default_code" style="padding-left: 10px;padding-right: 5px;"/>
+                            </td>
+                            <td style="width: 340px;max-width:340px; min-width:340px;">
+                                <span t-field="line.name" style="padding-left: 10px;padding-right: 10px;" />
+                            </td>
+                            <td class="text-center" style="width: 90px;max-width:90px; min-width:90px;">
+                                <span t-field="line.product_uom_qty" style="padding-left: 10px;padding-right: 5px;"/>
+                            </td>
+                            <td class="text-center" style="width: 75px;max-width:75px; min-width:75px;">
+                                <span t-field="line.product_uom.name" style="padding-left: 5px;padding-right: 5px;"/>
+                            </td>
+                            <td class="text-right" style="width: 125px;width: 125px;max-width:125px; min-width:125px;">
+                                <span t-field="line.price_unit" style="padding-left: 5px;padding-right: 5px;"/>
+                            </td>
+                            <td class="text-right" style="width: 75px;max-width:75px; min-width:75px;">
+                                <span style="margin-top:10px;color:white;" t-esc="'.'" />
+                            </td>
+                            <td class="text-right" style="width: 150px;width: 150px;max-width:150px; min-width:150px;">
+                                <span t-field="line.price_subtotal" style="padding-left: 5px;padding-right: 5px;"/>
+                            </td>
+                        </tr>
+                    </t>
+                </table>
+            </div>
+            <div class="article" style="position: absolute;
+                                        top: 890px;">
+                
+                <p t-esc="'{0:,.2f}'.format(o.amount_undiscounted)" style="padding-left: 930px;"/>
+                <p t-esc="'{0:,.2f}'.format(o.amount_untaxed)" style="padding-left: 930px;"/>
+                <p t-esc="'{0:,.2f}'.format(o.amount_tax)" style="padding-left: 930px;"/>
+                <p t-esc="'{0:,.2f}'.format(o.amount_total)" style="padding-left: 930px;"/>
+
+            </div>
+            <div class="article" style="position: absolute;
+                                        top: 1005px;">
+                <!-- amount to text -->
+                <t t-set="amount_to_text" t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(o.amount_total)" />
+                <t t-set="amount_split" t-value="amount_to_text.split(' ')" />
+                <t t-if="len(amount_split) &gt; 2">
+                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0], 'บาท', amount_split[3], 'สตางค์'])" />
+                </t>
+                <t t-else="">
+                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0], 'บาทถ้วน'])" />
+                </t>
+                <p style="padding-left: 100px;">
+                    <b t-esc="  amount_text_thai  " />
+                </p>
+            </div>
+            <div class="article" style="font-size: 14px;
+                                        position: absolute;
+                                        top: 1050px;
+                                        min-width: 1050px;
+                                        max-width:1050px;
+                                        padding-left: 90px;">
+                <p>
+                    <b >เงื่อนไข</b>
+                </p>
+                <span t-field="o.note" style="padding-left: 5px;" />
+            </div>
+        </div>
+    </template>
+    <template id="quotation_tev_form_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="tev_form.tev_quatation_custom_form" />
+            </t>
+        </t>
+    </template>
+</odoo>
