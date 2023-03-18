@@ -15,6 +15,7 @@
     "data": [
         "views/product_product.xml",
         "views/sale_order.xml",
+        "views/res_users.xml",
         "data/report_paperformat_data.xml",
         "data/report_data.xml",
         "report/quotation_form_sale.xml",
