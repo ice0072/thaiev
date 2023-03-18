@@ -1,6 +1,6 @@
 <odoo>
     <template id="tev_quatation_custom_form">
-        <div class="article" style="background-image:url('/tev_form/static/src/img/quatation.png'); background-size:300mm 424mm; width:300mm; height:424mm;">
+        <div class="container">
             <div class="row">
                 <div class="col-9"/>
                 <div class="col-3" name="col_left" style="padding-top: 150px; padding-left: 40px;">
@@ -8,55 +8,67 @@
                     <p t-field="o.date_order" />
                 </div>
             </div>
-            <div class="row" style="padding-top: 20px;">
-                <div class="col-2"/>
-                <div class="col-6" name="col_left" style="padding-left: 50px;">
-                    <p t-field="o.partner_id.name" />
-                    <p style="margin-top:-15px;" t-field="o.partner_id.name" />
-                    <p style="margin-top:-15px;">
+            <div class="row" style="padding-top: 20px;margin-top:-10px;padding-left: 100px;">
+                <div class="col-6" name="col_left" style="font-size: 12px;padding-left: 100px;max-width:550px; min-width:550px;">
+                    <p style="margin-top:10px;color:white;" t-esc="'.'" />
+                    <p t-field="o.partner_id.name" style="margin-top:20px" />
+                    <p style="margin-top:-20px">
                         <span t-field="o.partner_id.street" />
-                        <span t-field="o.partner_id.street" />
+                        <span></span>
+                        <span t-field="o.partner_id.street2" />
                     </p>
+                    <p style="margin-top:-20px">
+                        <span t-field="o.partner_id.city" />
+                        <span t-field="o.partner_id.state_id.name" />
+                        <span t-field="o.partner_id.zip" />
+                    </p>
+
+                    <!-- <p style="margin: 0">Tax ID: <span t-field="o.partner_id.vat" />
+                    </p> -->
+                    <!-- <p>Tax Branch: <span t-field="o.partner_id.branch" /></p> -->
                     <t t-if="o.partner_id.mobile">
-                        <p style="margin-top:-10px;" t-field="o.partner_id.mobile" />
+                        <p style="font-size: 14px;margin-left: -50px;position: absolute;top: 90px;" t-field="o.partner_id.mobile" />
                     </t>
                 </div>
-                <div class="col-3" name="col_left" style="padding-left: 50px;">
+                <div class="col-5">
                     <t t-if='o.commitment_date'>
-                        <p style="margin-top:50px;" t-field="o.commitment_date" />
+                        <p style="padding-top: 15px;padding-left: 150px;" t-field="o.commitment_date" />
                     </t>
                     <t t-else="">
-                        <p style="margin-top:10px;color:white;" t-esc="'.'" />
+                        <p style="padding-top: 15px;padding-left: 150px;color:white;" t-esc="'.'" />
                     </t>
 
                     <t t-if='o.validity_date'>
-                        <p t-field="o.validity_date" style="padding-left: 100px;"/>
+                        <p t-field="o.validity_date" style="margin-top:-5px;padding-left: 230px;"/>
                     </t>
                     <t t-else="">
-                        <p style="margin-top:10px;color:white;" t-esc="'.'" />
+                        <p style="margin-top:-5px;padding-left: 230px;color:white;" t-esc="'.'" />
                     </t>
                     <t t-if='o.payment_term_id'>
-                        <p style="margin-top:-10px;" t-field="o.payment_term_id.name" />
+                        <p style="margin-top:-5px;padding-left: 150px;" t-field="o.payment_term_id.name" />
                     </t>
                 </div>
             </div>
-            <div class="article" style="
+            <div class="page" style="
                                         font-size: 14px;
                                         min-width: 1015px;
                                         max-width:1015px;
                                         min-height:470px;
                                         max-height:470px;
-                                        margin-left: 60px;
+                                        margin-left: 45px;
                                         margin-top: 70px;
                                         position: absolute;
                                         top: 340px;">
-                <table style="table-layout: fixed;">
+                <table style="table-layout: fixed;padding: 10px 10px;">
                     <t t-foreach="o.order_line" t-as="line">
                         <tr>
-                            <td style="width: 160px;max-width:160px; min-width:160px;">
+                            <td style="width: 155px;max-width:155px; min-width:155px;">
                                 <span t-field="line.product_id.default_code" style="padding-left: 10px;padding-right: 5px;"/>
                             </td>
-                            <td style="width: 340px;max-width:340px; min-width:340px;">
+                            <td style="width: 10px;max-width:10px; min-width:10px;">
+                                <span/>
+                            </td>
+                            <td style="width: 330px;max-width:330px; min-width:330px;">
                                 <span t-field="line.name" style="padding-left: 10px;padding-right: 10px;" />
                             </td>
                             <td class="text-center" style="width: 90px;max-width:90px; min-width:90px;">
@@ -78,16 +90,16 @@
                     </t>
                 </table>
             </div>
-            <div class="article" style="position: absolute;
+            <div class="page" style="position: absolute;
                                         top: 890px;">
-                
+
                 <p t-esc="'{0:,.2f}'.format(o.amount_undiscounted)" style="padding-left: 930px;"/>
                 <p t-esc="'{0:,.2f}'.format(o.amount_untaxed)" style="padding-left: 930px;"/>
                 <p t-esc="'{0:,.2f}'.format(o.amount_tax)" style="padding-left: 930px;"/>
                 <p t-esc="'{0:,.2f}'.format(o.amount_total)" style="padding-left: 930px;"/>
 
             </div>
-            <div class="article" style="position: absolute;
+            <div class="page" style="position: absolute;
                                         top: 1005px;">
                 <!-- amount to text -->
                 <t t-set="amount_to_text" t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(o.amount_total)" />
@@ -102,7 +114,7 @@
                     <b t-esc="  amount_text_thai  " />
                 </p>
             </div>
-            <div class="article" style="font-size: 14px;
+            <div class="page" style="font-size: 14px;
                                         position: absolute;
                                         top: 1050px;
                                         min-width: 1050px;
@@ -113,12 +125,27 @@
                 </p>
                 <span t-field="o.note" style="padding-left: 5px;" />
             </div>
+            <div class="page" style="   position: absolute;
+                                        top: 1410px;
+                                        min-width: 300px;
+                                        max-width:300px;
+                                        padding-left: 400px;">
+                <t t-if="o.user_id.autograph">
+                    <img t-att-src="'data:image/png;base64,%s' % to_text(o.user_id.autograph)" style="height:1.8cm; width:7cm;"/>
+                </t>
+
+            </div>
         </div>
     </template>
     <template id="quotation_tev_form_pdf">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="tev_form.tev_quatation_custom_form" />
+                <div class="article" style="background-image:url('/tev_form/static/src/img/quatation.png'); 
+                                                background-size:cover;
+                                                width:300mm; height:424mm;">
+                    <t t-call="tev_form.tev_quatation_custom_form" />
+                </div>
+
             </t>
         </t>
     </template>
