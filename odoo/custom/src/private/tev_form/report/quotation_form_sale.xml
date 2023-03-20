@@ -1,56 +1,76 @@
 <odoo>
     <template id="tev_quatation_custom_form">
-        <div class="container">
+        <link href="//db.onlinewebfonts.com/c/e6a66ad34a680b8090172c85e4fece1d?family=Angsana+New" rel="stylesheet"/>
+        <div class="container" style="font-family:Angsana New">
             <div class="row">
                 <div class="col-9"/>
-                <div class="col-3" name="col_left" style="padding-top: 150px; padding-left: 40px;">
+                <div class="col-3" name="col_left" style="padding-top: 150px; padding-left: 40px;font-size: 25px;">
                     <p t-field="o.name" />
-                    <p t-field="o.date_order" />
+                    <p style="margin-top:-15px;" t-field="o.date_order" />
                 </div>
             </div>
-            <div class="row" style="padding-top: 20px;margin-top:-10px;padding-left: 100px;">
-                <div class="col-6" name="col_left" style="font-size: 12px;padding-left: 100px;max-width:550px; min-width:550px;">
-                    <p style="margin-top:10px;color:white;" t-esc="'.'" />
-                    <p t-field="o.partner_id.name" style="margin-top:20px" />
-                    <p style="margin-top:-20px">
-                        <span t-field="o.partner_id.street" />
-                        <span></span>
-                        <span t-field="o.partner_id.street2" />
-                    </p>
-                    <p style="margin-top:-20px">
-                        <span t-field="o.partner_id.city" />
-                        <span t-field="o.partner_id.state_id.name" />
-                        <span t-field="o.partner_id.zip" />
-                    </p>
+            <div class="row" style="padding-left: 60px;position: absolute;top: 225px;">
+                <div class="col-6" name="col_left" style="font-size: 18px;max-width:600px; min-width:600px;">
+                    <table style="table-layout: fixed;padding: 10px 10px;">
+                        <tr>
+                            <td style="width: 140px;max-width:140px; min-width:140px;">
+                                <b style="font-size: 20px;">ชื่อบริษัท / Company : </b>
+                            </td>
+                            <td>
+                                <span t-field="o.partner_id.name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 140px;max-width:140px; min-width:140px;">
+                                <b style="font-size: 20px;">ที่อยู่บริษัท / Address :</b>
+                            </td>
+                            <td style="width: 350px;max-width:350px; min-width:350px;">
+                                <span t-field="o.partner_id.street" />
+                                <span></span>
+                                <span t-field="o.partner_id.street2" />
+                                <span t-field="o.partner_id.city" />
+                                <span t-field="o.partner_id.state_id.name" />
+                                <span t-field="o.partner_id.zip" />
 
-                    <!-- <p style="margin: 0">Tax ID: <span t-field="o.partner_id.vat" />
-                    </p> -->
-                    <!-- <p>Tax Branch: <span t-field="o.partner_id.branch" /></p> -->
-                    <t t-if="o.partner_id.mobile">
-                        <p style="font-size: 14px;margin-left: -50px;position: absolute;top: 90px;" t-field="o.partner_id.mobile" />
-                    </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <t t-if="o.partner_id.mobile">
+                                <tr >
+                                    <td style="width: 80px;max-width:80px; min-width:80px;">
+                                        <b style="font-size: 20px;">โทร / Tel :</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.partner_id.mobile" />
+                                    </td>
+                                </tr>
+
+                            </t>
+                        </tr>
+                    </table>
+
                 </div>
-                <div class="col-5">
+                <div class="col-5" style="font-size: 25px;">
                     <t t-if='o.commitment_date'>
-                        <p style="padding-top: 15px;padding-left: 150px;" t-field="o.commitment_date" />
+                        <p style="padding-top: 5px;padding-left: 150px;" t-field="o.commitment_date" />
                     </t>
                     <t t-else="">
                         <p style="padding-top: 15px;padding-left: 150px;color:white;" t-esc="'.'" />
                     </t>
 
                     <t t-if='o.validity_date'>
-                        <p t-field="o.validity_date" style="margin-top:-5px;padding-left: 230px;"/>
+                        <p t-field="o.validity_date" style="margin-top:-20px;padding-left: 230px;"/>
                     </t>
                     <t t-else="">
-                        <p style="margin-top:-5px;padding-left: 230px;color:white;" t-esc="'.'" />
+                        <p style="margin-top:-20px;padding-left: 230px;color:white;" t-esc="'.'" />
                     </t>
                     <t t-if='o.payment_term_id'>
-                        <p style="margin-top:-5px;padding-left: 150px;" t-field="o.payment_term_id.name" />
+                        <p style="margin-top:-20px;padding-left: 150px;" t-field="o.payment_term_id.name" />
                     </t>
                 </div>
             </div>
             <div class="page" style="
-                                        font-size: 14px;
+                                        font-size: 25px;
                                         min-width: 1015px;
                                         max-width:1015px;
                                         min-height:470px;
@@ -68,7 +88,7 @@
                             <td style="width: 10px;max-width:10px; min-width:10px;">
                                 <span/>
                             </td>
-                            <td style="width: 330px;max-width:330px; min-width:330px;">
+                            <td style="width: 330px;max-width:330px; min-width:330px;font-size: 20px;">
                                 <span t-field="line.name" style="padding-left: 10px;padding-right: 10px;" />
                             </td>
                             <td class="text-center" style="width: 90px;max-width:90px; min-width:90px;">
@@ -81,7 +101,7 @@
                                 <span t-field="line.price_unit" style="padding-left: 5px;padding-right: 5px;"/>
                             </td>
                             <td class="text-right" style="width: 75px;max-width:75px; min-width:75px;">
-                                <span style="margin-top:10px;color:white;" t-esc="'.'" />
+                                <span style="margin-top:10px;color:white;" t-field='line.discount'/>
                             </td>
                             <td class="text-right" style="width: 150px;width: 150px;max-width:150px; min-width:150px;">
                                 <span t-field="line.price_subtotal" style="padding-left: 5px;padding-right: 5px;"/>
@@ -91,12 +111,12 @@
                 </table>
             </div>
             <div class="page" style="position: absolute;
-                                        top: 890px;">
-
+                                        top: 880px;
+                                        font-size: 25px;">
                 <p t-esc="'{0:,.2f}'.format(o.amount_undiscounted)" style="padding-left: 930px;"/>
-                <p t-esc="'{0:,.2f}'.format(o.amount_untaxed)" style="padding-left: 930px;"/>
-                <p t-esc="'{0:,.2f}'.format(o.amount_tax)" style="padding-left: 930px;"/>
-                <p t-esc="'{0:,.2f}'.format(o.amount_total)" style="padding-left: 930px;"/>
+                <p t-esc="'{0:,.2f}'.format(o.amount_untaxed)" style="padding-left: 930px;margin-top:-10px;"/>
+                <p t-esc="'{0:,.2f}'.format(o.amount_tax)" style="padding-left: 930px;margin-top:-10px;"/>
+                <p t-esc="'{0:,.2f}'.format(o.amount_total)" style="padding-left: 930px;margin-top:-15px;"/>
 
             </div>
             <div class="page" style="position: absolute;
@@ -111,18 +131,16 @@
                     <t t-set="amount_text_thai" t-value="''.join([amount_split[0], 'บาทถ้วน'])" />
                 </t>
                 <p style="padding-left: 100px;">
-                    <b t-esc="  amount_text_thai  " />
+                    <b style="font-size: 25px;" t-esc=" '('+ amount_text_thai +')' " />
                 </p>
             </div>
-            <div class="page" style="font-size: 14px;
+            <div class="page" style="font-size: 18px;
                                         position: absolute;
                                         top: 1050px;
                                         min-width: 1050px;
                                         max-width:1050px;
                                         padding-left: 90px;">
-                <p>
-                    <b >เงื่อนไข</b>
-                </p>
+                
                 <span t-field="o.note" style="padding-left: 5px;" />
             </div>
             <div class="page" style="   position: absolute;
@@ -140,11 +158,20 @@
     <template id="quotation_tev_form_pdf">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <div class="article" style="background-image:url('/tev_form/static/src/img/quatation.png'); 
+                <t t-if="o.state not in ['sale','done']">
+                    <div class="article" style="background-image:url('/tev_form/static/src/img/quatation.png'); 
                                                 background-size:cover;
                                                 width:300mm; height:424mm;">
-                    <t t-call="tev_form.tev_quatation_custom_form" />
-                </div>
+                        <t t-call="tev_form.tev_quatation_custom_form" />
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="article" style="background-image:url('/tev_form/static/src/img/sale_order.png'); 
+                                                background-size:cover;
+                                                width:300mm; height:424mm;">
+                        <t t-call="tev_form.tev_quatation_custom_form" />
+                    </div>
+                </t>
 
             </t>
         </t>
