@@ -80,7 +80,7 @@
                     class="text-center">
                     <tr>
                         <th
-                            style="width: 200px; max-width:200px; min-width:200px; border-right:2px solid black; ">
+                            style="height:25px; width: 200px; max-width:200px; min-width:200px; border-right:2px solid black; ">
                             วันที่ใบกำกับภาษี<p style="margin-top:-15px;">Tax Invoice Date</p></th>
                         <th
                             style="width: 238px; max-width:238px; min-width:238px; border-right:2px solid black; ">
@@ -94,12 +94,13 @@
                         <th style="width: 148px; max-width:148px; min-width:148px; ">ยอดคงเหลือ<p
                                 style="margin-top:-15px;">Balance</p></th>
                     </tr>
+
                     <t t-set="total_amount" t-value="0" />
                     <t t-foreach="o.invoice_ids" t-as="line">
                         <t t-if="line.move_type!='out_refund'">
                             <t t-set="total_amount" t-value="total_amount+line.amount_total" />
                             <tr>
-                                <td style="border-right:2px solid black;">
+                                <td style="border-right:2px solid black; ">
                                     <p t-esc="line.invoice_date" />
                                 </td>
 
@@ -144,7 +145,7 @@
                 style="position: absolute;
                                         top: 1000px;">
                 <t t-set="amount_to_text"
-                    t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(o.amount_total)" />
+                    t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(total_amount)" />
                 <t t-set="amount_split" t-value="amount_to_text.split(' ')" />
                 <t t-if="len(amount_split) &gt; 2">
                     <t t-set="amount_text_thai"
