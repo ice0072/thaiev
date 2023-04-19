@@ -1,14 +1,17 @@
 <odoo>
-    <template id="tev_quatation_custom_form">
+    <template id="tev_invoice_custom_form">
         <link href="//db.onlinewebfonts.com/c/e6a66ad34a680b8090172c85e4fece1d?family=Angsana+New"
             rel="stylesheet" />
+            <!-- <link  rel="stylesheet" type="text/scss" href="/tev_form/static/src/scss/fonts.scss"  /> -->
+            
         <div class="container" style="font-family:Angsana New">
             <div class="row">
+                
                 <div class="col-9" />
                 <div class="col-3" name="col_left"
                     style="padding-top: 147px; padding-left: 40px;font-size: 25px;">
                     <p t-field="o.name" />
-                    <p style="margin-top:-15px;" t-field="o.date_order" />
+                    <p style="margin-top:-15px;" t-field="o.invoice_date" />
                 </div>
             </div>
             <div class="row" style="padding-left: 60px;position: absolute;top: 225px;">
@@ -51,25 +54,17 @@
                             </t>
                         </tr>
                     </table>
-
                 </div>
                 <div class="col-5" style="font-size: 25px;">
-                    <t t-if='o.commitment_date'>
-                        <p style="padding-top: 5px;padding-left: 150px;" t-field="o.commitment_date" />
+                    <t t-if='o.ref'>
+                        <p style="padding-top: 2px;padding-left: 150px;" t-field="o.ref" />
                     </t>
                     <t t-else="">
-                        <p style="padding-top: 5px;padding-left: 150px;color:white;" t-esc="'.'" />
+                        <p style="padding-top: 2px;padding-left: 150px;color:white;" t-esc="'.'" />
                     </t>
-
-                    <t t-if='o.validity_date'>
-                        <p t-field="o.validity_date" style="margin-top:-20px;padding-left: 230px;" />
-                    </t>
-                    <t t-else="">
-                        <p style="margin-top:-20px;padding-left: 230px;color:white;" t-esc="'.'" />
-                    </t>
-                    <t t-if='o.payment_term_id'>
-                        <p style="margin-top:-17px;padding-left: 150px;"
-                            t-field="o.payment_term_id.name" />
+                    <t t-if='o.invoice_date_due'>
+                        <p style="margin-top:-28px;padding-left: 150px;"
+                            t-field="o.invoice_date_due" />
                     </t>
                 </div>
             </div>
@@ -85,7 +80,7 @@
                                         position: absolute;
                                         top: 340px;">
                 <table style="table-layout: fixed;padding: 10px 10px;">
-                    <t t-foreach="o.order_line" t-as="line">
+                    <t t-foreach="o.invoice_line_ids" t-as="line">
                         <tr>
                             <td style="width: 155px;max-width:155px; min-width:155px;">
                                 <span t-field="line.product_id.default_code"
@@ -101,13 +96,11 @@
                             </td>
                             <td class="text-center"
                                 style="width: 90px;max-width:90px; min-width:90px;">
-                                <span t-field="line.product_uom_qty"
+                                <span t-field="line.quantity"
                                     style="padding-left: 10px;padding-right: 5px;" />
                             </td>
                             <td class="text-center"
                                 style="width: 75px;max-width:75px; min-width:75px;">
-                                <span t-field="line.product_uom.name"
-                                    style="padding-left: 5px;padding-right: 5px;" />
                             </td>
                             <td class="text-right"
                                 style="width: 125px;width: 125px;max-width:125px; min-width:125px;">
@@ -133,23 +126,22 @@
             </div>
             <div class="page"
                 style="position: absolute;
-                                        top: 876px;
+                                        top: 885px;
                                         font-size: 25px;
                                         text-align: right;
                                         padding-left: 970px;
                                         right: 70px;">
-                <p t-esc="'{0:,.2f}'.format(o.amount_undiscounted)" />
                 <p t-esc="'{0:,.2f}'.format(o.amount_untaxed)"
-                    style="margin-top:-12px;" />
+                    style="margin-top:-10px;" />
                 <p t-esc="'{0:,.2f}'.format(o.amount_tax)"
-                    style="margin-top:-12px;" />
+                    style="margin-top:-10px;" />
                 <p t-esc="'{0:,.2f}'.format(o.amount_total)"
-                    style="margin-top:-11px;" />
+                    style="margin-top:-14px;" />
 
             </div>
             <div class="page"
                 style="position: absolute;
-                                        top: 1000px;">
+                                        top: 960px;">
                 <!-- amount to text -->
                 <t t-set="amount_to_text"
                     t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(o.amount_total)" />
@@ -165,67 +157,20 @@
                     <b style="font-size: 25px;" t-esc=" '('+ amount_text_thai +')' " />
                 </p>
             </div>
-            
-            <!-- ส่วนของ description  -->
-            <div class="page"
-                style="font-size: 15px;
-                                        position: absolute;
-                                        top: 1050px;
-                                        min-width: 1050px;
-                                        max-width:1050px;
-                                        padding-left: 90px;">
-                <span t-field="o.note" style="padding-left: 5px;" />
-            </div>
         </div>
     </template>
-    <!-- ส่วนของ background ที่1 -->
-    <template id="quotation_tev_form_pdf">
+
+    <!-- ส่วนของ background -->
+    <template id="invoice_tev_form_pdf">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-if="o.state not in ['sale','done']">
-                    <div class="article"
-                        style="background-image:url('/tev_form/static/src/img/quatation.png'); 
+                <div class="article"
+                    style="background-image:url('/tev_form/static/src/img/invoice.png'); 
                                                 background-size:cover;
                                                 width:300mm; height:424mm;">
-                        <t t-call="tev_form.tev_quatation_custom_form" />
-                    </div>
-                </t>
-                <t t-else="">
-                    <div class="article"
-                        style="background-image:url('/tev_form/static/src/img/sale_order.png'); 
-                                                background-size:cover;
-                                                width:300mm; height:424mm;">
-                        <t t-call="tev_form.tev_quatation_custom_form" />
-                    </div>
-                </t>
-
+                    <t t-call="tev_form.tev_invoice_custom_form" />
+                </div>
             </t>
         </t>
-    </template>
-    <!-- ส่วนของ background ที่2 -->
-    <template id="report_saleorder_inherit_tev" inherit_id="sale.report_saleorder">
-        <xpath expr="//t[@t-call='web.html_container']" position="replace">
-            <t t-call="web.html_container">
-                <t t-foreach="docs" t-as="o">
-                    <t t-if="o.state not in ['sale','done']">
-                        <div class="article"
-                            style="background-image:url('/tev_form/static/src/img/quatation.png'); 
-                                                    background-size:cover;
-                                                    width:300mm; height:424mm;">
-                            <t t-call="tev_form.tev_quatation_custom_form" />
-                        </div>
-                    </t>
-                    <t t-else="">
-                        <div class="article"
-                            style="background-image:url('/tev_form/static/src/img/sale_order.png'); 
-                                                    background-size:cover;
-                                                    width:300mm; height:424mm;">
-                            <t t-call="tev_form.tev_quatation_custom_form" />
-                        </div>
-                    </t>
-    
-                </t>
-            </t>
-        </xpath>
     </template>
 </odoo>
