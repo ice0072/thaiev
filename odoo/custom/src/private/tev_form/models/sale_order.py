@@ -11,6 +11,12 @@ class SaleOrder(models.Model):
     subject = fields.Char(
         string="เรื่อง",
     )
+    # def invoice_data(self):
+    #     data=[]
+    #     for rec in self.invoice_ids:
+    #         data.append(rec)
+    #     return data
+
 
 
 class SaleOrderLine(models.Model):

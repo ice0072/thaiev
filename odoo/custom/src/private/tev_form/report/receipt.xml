@@ -1,0 +1,189 @@
+<odoo>
+    <template id="tev_receipt_custom_form">
+        <link href="//db.onlinewebfonts.com/c/e6a66ad34a680b8090172c85e4fece1d?family=Angsana+New"
+            rel="stylesheet" />
+        <div class="container" style="font-family:Angsana New">
+            <div class="row">
+                <div class="col-9" />
+                <div class="col-3" name="col_left"
+                    style="padding-top: 147px; padding-left: 40px;font-size: 25px;">
+                    <p t-field="o.name" />
+                    <p style="margin-top:-15px;" t-field="o.date_order" />
+                </div>
+            </div>
+            <div class="row" style="padding-left: 60px;position: absolute;top: 225px;">
+                <div class="col-6" name="col_left"
+                    style="font-size: 18px;max-width:600px; min-width:600px;">
+                    <table style="table-layout: fixed;padding: 10px 10px;">
+                        <tr>
+                            <td style="width: 140px;max-width:140px; min-width:140px;">
+                                <b style="font-size: 20px;">ชื่อบริษัท / Company : </b>
+                            </td>
+                            <td>
+                                <span t-field="o.partner_id.name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 140px;max-width:140px; min-width:140px;">
+                                <b style="font-size: 20px;">ที่อยู่บริษัท / Address :</b>
+                            </td>
+                            <td style="width: 350px;max-width:350px; min-width:350px;">
+                                <span t-field="o.partner_id.street" />
+                                <span></span>
+                                <span t-field="o.partner_id.street2" />
+                                <span t-field="o.partner_id.city" />
+                                <span t-field="o.partner_id.state_id.name" />
+                                <span t-field="o.partner_id.zip" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <t t-if="o.partner_id.mobile">
+                                <tr>
+                                    <td style="width: 80px;max-width:80px; min-width:80px;">
+                                        <b style="font-size: 20px;">โทร / Tel :</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.partner_id.mobile" />
+                                    </td>
+                                </tr>
+
+                            </t>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="col-5" style="font-size: 25px;">
+                    <t t-if='o.client_order_ref'>
+                        <p style="padding-top: 1px;padding-left: 40px;" t-field="o.client_order_ref" />
+                    </t>
+                    <t t-else="">
+                        <p style="padding-top: 2px;padding-left: 150px;color:white;" t-esc="'.'" />
+                    </t>
+                </div>
+            </div>
+
+            <!-- table-line -->
+            <div class="page"
+                style="   
+                                        font-size: 25px;
+                                        min-width: 1015px;
+                                        max-width:1015px;
+                                        min-height:648px;
+                                        max-height:648px;
+                                        margin-left: 45px;
+                                        margin-top: 70px;
+                                        position: absolute;
+                                        top: 282px;">
+                <table
+                    style="table-layout: fixed;padding: 10px 10px; height:648px;min-height:648px;max-height:648px;"
+                    class="text-center">
+                    <tr>
+                        <th
+                            style="height:25px; width: 200px; max-width:200px; min-width:200px; border-right:2px solid black; ">
+                            วันที่ใบกำกับภาษี<p style="margin-top:-15px;">Tax Invoice Date</p></th>
+                        <th
+                            style="width: 238px; max-width:238px; min-width:238px; border-right:2px solid black; ">
+                            เลขที่ใบกำกับภาษี<p style="margin-top:-15px;">Tax Invoice Number</p></th>
+                        <th
+                            style="width: 230px; max-width:230px; min-width:230px; border-right:2px solid black; ">
+                            จำนวนเงิน<p style="margin-top:-15px;">Original Amount</p></th>
+                        <th
+                            style="width: 197px; max-width:197px; min-width:197px; border-right:2px solid black; ">
+                            ยอดชำระ<p style="margin-top:-15px;">Amount Paid</p></th>
+                        <th style="width: 148px; max-width:148px; min-width:148px; ">ยอดคงเหลือ<p
+                                style="margin-top:-15px;">Balance</p></th>
+                    </tr>
+
+                    <t t-set="total_amount" t-value="0" />
+                    <t t-foreach="o.invoice_ids" t-as="line">
+                        <t t-if="line.move_type!='out_refund'">
+                            <t t-set="total_amount" t-value="total_amount+line.amount_total" />
+                            <tr>
+                                <td style="border-right:2px solid black; ">
+                                    <p t-esc="line.invoice_date" />
+                                </td>
+
+                                <td style="border-right:2px solid black;">
+                                    <p t-esc="line.name" />
+                                </td>
+
+                                <td
+                                    style="border-right:2px solid black; text-align: right; padding-right: 6px;">
+                                    <p t-esc="'{0:,.2f}'.format(line.amount_total)" />
+                                </td>
+
+                                <td
+                                    style="border-right:2px solid black; text-align: right; padding-right: 6px;">
+                                    <p
+                                        t-esc="'{0:,.2f}'.format(line.amount_total - line.amount_residual)" />
+                                </td>
+
+                                <td style="text-align: right; padding-right: 6px;">
+                                    <p t-esc="'{0:,.2f}'.format(line.amount_residual)" />
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </table>
+            </div>
+
+            <!-- sum amount total -->
+            <div class="page"
+                style="position: absolute;
+                        top: 1013px;
+                        font-size: 25px;
+                        text-align: right;
+                        padding-left: 970px;
+                        right: 70px;">
+                <p t-esc="'{0:,.2f}'.format(total_amount)"
+                    style="margin-top:-12px; " />
+            </div>
+
+            <!-- amount to text -->
+            <div class="page"
+                style="position: absolute;
+                                        top: 1000px;">
+                <t t-set="amount_to_text"
+                    t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(total_amount)" />
+                <t t-set="amount_split" t-value="amount_to_text.split(' ')" />
+                <t t-if="len(amount_split) &gt; 2">
+                    <t t-set="amount_text_thai"
+                        t-value="''.join([amount_split[0], 'บาท', amount_split[3], 'สตางค์'])" />
+                </t>
+                <t t-else="">
+                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0], 'บาทถ้วน'])" />
+                </t>
+                <p style="padding-left: 100px;">
+                    <b style="font-size: 25px;" t-esc=" '('+ amount_text_thai +')' " />
+                </p>
+            </div>
+
+            <!-- description -->
+            <div class="page"
+                style="font-size: 15px;
+                                        position: absolute;
+                                        top: 1050px;
+                                        min-width: 1050px;
+                                        max-width:1050px;
+                                        padding-left: 90px;">
+                <span t-field="o.note" style="padding-left: 5px;" />
+            </div>
+
+        </div>
+    </template>
+
+    <!-- ส่วนของ background -->
+    <template id="receipt_tev_form_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="article"
+                    style="background-image:url('/tev_form/static/src/img/receipt.png'); 
+                                                background-size:cover;
+                                                width:300mm; height:424mm;">
+                    <t t-call="tev_form.tev_receipt_custom_form" />
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

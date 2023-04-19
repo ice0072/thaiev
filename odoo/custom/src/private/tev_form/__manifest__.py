@@ -19,6 +19,12 @@
         "data/report_paperformat_data.xml",
         "data/report_data.xml",
         "report/quotation_form_sale.xml",
+        "report/delivery_note_tax_invoice.xml",
+        "report/credit_note_tax_invoice.xml",
+        "report/invoice.xml",
+        "report/receipt_tax_invoice.xml",
+        "report/receipt.xml"
     ],
     "installable": True,
+     'application': True,
 }

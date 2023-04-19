@@ -12,4 +12,78 @@
         <field name="print_report_name">('Quotation - %s' % (object.name))</field>
         <field name="paperformat_id" ref="tev_form.tev_paperformat" />
     </record>
+    <!-- ใบส่งของ/ใบกำกับภาษี delivery note/tax invoice-->
+    <record id="delivery_note_tax_invoice_tev_form_pdf_report" model="ir.actions.report">
+        <field name="name">delivery note/tax invoice ใบส่งของ/ใบกำกับภาษี</field>
+        <field name="model">account.move</field>
+        <field name="report_name">tev_form.delivery_note_tax_invoice_tev_form_pdf</field>
+        <field name="report_file">tev_form.delivery_note_tax_invoice_tev_form_pdf</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_type">report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="print_report_name">('delivery_note_tax_invoice_tev_form_pdf - %s' % (object.name))</field>
+        <field name="paperformat_id" ref="tev_form.tev_paperformat" />
+    </record>
+    <!-- ใบลดหนี้/ใบกำกับภาษี credit note/tax invoice -->
+    <record id="credit_note_tax_invoice_tev_form_pdf_report" model="ir.actions.report">
+        <field name="name">credit note/tax invoice ใบลดหนี้/ใบกำกับภาษี</field>
+        <field name="model">account.move</field>
+        <field name="report_name">tev_form.credit_note_tax_invoice_tev_form_pdf</field>
+        <field name="report_file">tev_form.credit_note_tax_invoice_tev_form_pdf</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_type">report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="print_report_name">('credit_note_tax_invoice_tev_form_pdf - %s' % (object.name))</field>
+        <field name="paperformat_id" ref="tev_form.tev_paperformat" />
+    </record>
+    <!-- ใบแจ้งหนี้ invoice -->
+    <record id="invoice_tev_form_pdf_report" model="ir.actions.report">
+        <field name="name">invoice ใบแจ้งหนี้</field>
+        <field name="model">account.move</field>
+        <field name="report_name">tev_form.invoice_tev_form_pdf</field>
+        <field name="report_file">tev_form.invoice_tev_form_pdf</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_type">report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="print_report_name">('invoice_tev_form_pdf - %s' % (object.name))</field>
+        <field name="paperformat_id" ref="tev_form.tev_paperformat" />
+    </record>
+    <!-- ใบเสร็จรับเงิน/ใบกำกับภาษี receipt/tax invoice -->
+    <record id="receipt_tax_invoice_tev_form_pdf_report" model="ir.actions.report">
+        <field name="name">receipt/tax invoice ใบเสร็จรับเงิน/ใบกำกับภาษี</field>
+        <field name="model">account.move</field>
+        <field name="report_name">tev_form.receipt_tax_invoice_tev_form_pdf</field>
+        <field name="report_file">tev_form.receipt_tax_invoice_tev_form_pdf</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_type">report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="print_report_name">('receipt_tax_invoice_tev_form_pdf - %s' % (object.name))</field>
+        <field name="paperformat_id" ref="tev_form.tev_paperformat" />
+    </record>
+    <!-- ใบเสร็จรับเงิน receipt -->
+    <record id="receipt_tev_form_pdf_report" model="ir.actions.report">
+        <field name="name">receipt ใบเสร็จรับเงิน</field>
+        <field name="model">sale.order</field>
+        <field name="report_name">tev_form.receipt_tev_form_pdf</field>
+        <field name="report_file">tev_form.receipt_tev_form_pdf</field>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="binding_type">report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="print_report_name">('receipt_tev_form_pdf - %s' % (object.name))</field>
+        <field name="paperformat_id" ref="tev_form.tev_paperformat" />
+    </record>
+
+    
+    <record id="sale.action_report_saleorder" model="ir.actions.report">
+        <field name="name">Quotation / Order</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tev_form.quotation_tev_form_pdf</field>
+        <field name="report_file">tev_form.quotation_tev_form_pdf</field>
+        <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="tev_form.tev_paperformat" />
+    </record>
+    
 </odoo>
