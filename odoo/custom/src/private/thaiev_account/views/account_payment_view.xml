@@ -7,12 +7,12 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='is_internal_transfer']" position='after'>
                 <field
-                    name="is_payment_with_credit_note"
+                    name="is_payment_after_credit_note"
                     attrs="{'readonly': [('state', '!=', 'draft')]}"
                 />
                 <field
                     name="credit_note_reference"
-                    attrs="{'invisible': [('is_payment_with_credit_note', '!=', True)], 'readonly': [('state', '!=', 'draft')]}"
+                    attrs="{'invisible': [('is_payment_after_credit_note', '!=', True)], 'readonly': [('state', '!=', 'draft')]}"
                 />
             </xpath>
         </field>

@@ -7,8 +7,8 @@ from odoo import api, fields, models
 class AccountPayment(models.Model):
     _inherit = "account.payment"
 
-    is_payment_with_credit_note = fields.Boolean(
-        string="Is a payment with credit note",
+    is_payment_after_credit_note = fields.Boolean(
+        string="Is a payment after credit note",
     )
     credit_note_reference = fields.Many2one(
         comodel_name="account.move",

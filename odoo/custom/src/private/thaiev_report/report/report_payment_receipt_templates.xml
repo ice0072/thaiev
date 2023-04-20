@@ -118,7 +118,7 @@
                                         t-esc="amount"
                                         t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
                                     /></td>
-                                <t t-if="not o.is_payment_with_credit_note">
+                                <t t-if="not o.is_payment_after_credit_note">
                                     <td class="text-right"><span
                                             t-field="inv.amount_residual"
                                         /></td>
@@ -132,7 +132,7 @@
                             </t>
                         </tr>
                         <tr>
-                            <t t-if="o.is_payment_with_credit_note">
+                            <t t-if="o.is_payment_after_credit_note">
                                 <td><span
                                         t-field="o.credit_note_reference.invoice_date"
                                     /></td>
