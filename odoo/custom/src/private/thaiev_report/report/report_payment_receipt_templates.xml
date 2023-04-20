@@ -118,8 +118,37 @@
                                         t-esc="amount"
                                         t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
                                     /></td>
+                                <t t-if="not o.is_payment_with_credit_note">
+                                    <td class="text-right"><span
+                                            t-field="inv.amount_residual"
+                                        /></td>
+                                </t>
+                                <t t-else="">
+                                    <td class="text-right"><span
+                                            t-esc="inv.amount_total-amount"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                                        /></td>
+                                </t>
+                            </t>
+                        </tr>
+                        <tr>
+                            <t t-if="o.is_payment_with_credit_note">
+                                <td><span
+                                        t-field="o.credit_note_reference.invoice_date"
+                                    /></td>
+                                <td><span t-field="o.credit_note_reference.name" /></td>
+                                <td><span t-field="o.credit_note_reference.ref" /></td>
                                 <td class="text-right"><span
-                                        t-field="inv.amount_residual"
+                                        t-esc="-o.credit_note_reference.amount_total"
+                                        t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                                    /></td>
+                                <td class="text-right"><span
+                                        t-esc="-o.credit_note_reference.amount_total"
+                                        t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                                    /></td>
+                                <td class="text-right"><span
+                                        t-esc="o.credit_note_reference.amount_residual"
+                                        t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
                                     /></td>
                             </t>
                         </tr>
