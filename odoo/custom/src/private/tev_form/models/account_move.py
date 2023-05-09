@@ -32,13 +32,23 @@ class AccountMove(models.Model):
     
     def old_invoice_date(self):
         old_invoice_data=self.env['account.move'].search([('name','=',self.old_invoice(self.ref))])
-        return old_invoice_data[0].invoice_date
+        if len(old_invoice_data) > 0:
+            return old_invoice_data[0].invoice_date
+        return False
     
     def old_invoice_name(self):
         old_invoice_data=self.env['account.move'].search([('name','=',self.old_invoice(self.ref))])
         return old_invoice_data[0].name
 
+    def payment_name(self):
+        accont_payment_data=self.env['account.payment'].search([('ref','ilike',f'%{self.name}%')])
+        if(len(accont_payment_data)>0):
+            return accont_payment_data[0].name
+        return ""
 
-    
-
+    def payment_date(self):
+        accont_payment_data=self.env['account.payment'].search([('ref','ilike',f'%{self.name}%')])
+        if(len(accont_payment_data)>0):
+            return accont_payment_data[0].date
+        return ""
 
