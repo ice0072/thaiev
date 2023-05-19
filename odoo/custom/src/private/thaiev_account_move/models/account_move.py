@@ -19,7 +19,8 @@ class AccountMove(models.Model):
         reconciles = self._get_reconciled_info_JSON_values()
         payment = []
         for rec in reconciles:
-            payment.append(rec["ref"].split()[0])
+            if rec["name"]:
+                payment.append(rec["ref"].split()[0])
         self.payment_info_name = " ".join(payment)
 
     def button_draft(self):
