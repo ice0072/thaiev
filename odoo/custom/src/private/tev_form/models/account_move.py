@@ -51,4 +51,8 @@ class AccountMove(models.Model):
         if(len(accont_payment_data)>0):
             return accont_payment_data[0].date
         return ""
-
+    
+    def get_formatted_date(self,date_data):
+        
+        formatted_date = date_data.strftime('%d/%m/%Y')
+        return formatted_date
