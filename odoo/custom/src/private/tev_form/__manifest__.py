@@ -11,7 +11,8 @@
     "depends": [
         "stock",
         "sale",
-        "sale_management"
+        "sale_management",
+        "l10n_th_amount_to_text"
     ],
     "data": [
         "views/product_product.xml",

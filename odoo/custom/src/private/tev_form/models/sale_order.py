@@ -39,3 +39,7 @@ class SaleOrderLine(models.Model):
     def onchange_product_id(self):
         if(self.product_id and self.product_id.condition):
             self.order_id.note = self.product_id.condition
+
+    def get_formatted_date(self,date_data):
+        formatted_date = date_data.strftime('%d/%m/%Y')
+        return formatted_date

@@ -8,7 +8,7 @@
                 <div class="col-3" name="col_left"
                     style="padding-top: 147px; padding-left: 40px;font-size: 25px;">
                     <p t-esc="o.payment_name()" />
-                    <p style="margin-top:-15px;" t-esc="o.payment_date()" />
+                    <p style="margin-top:-17px;" t-esc="o.get_formatted_date(o.payment_date())" />
                 </div>
             </div>
             <div class="row" style="padding-left: 60px;position: absolute;top: 225px;">
@@ -93,7 +93,7 @@
                                         min-height:470px;
                                         max-height:470px;
                                         margin-left: 45px;
-                                        margin-top: 70px;
+                                        margin-top: 100px;
                                         position: absolute;
                                         top: 415px;">
                 <table style="table-layout: fixed;padding: 10px 10px;">
@@ -101,28 +101,34 @@
                         <tr>
                             <td
                                 style="width: 155px;max-width:155px; min-width:155px; text-align: center;">
-                                <span t-field="line.product_id.default_code"
-                                    style="padding-left: 10px;padding-right: 5px;" />
+                                <t t-if='line.price_unit > 0.0'>
+                                    <span t-field="line.product_id.default_code"
+                                        style="padding-left: 10px;padding-right: 5px;" />
+                                </t>
                             </td>
                             <td style="width: 10px;max-width:10px; min-width:10px;">
                                 <span />
                             </td>
                             <td
                                 style="width: 330px;max-width:330px; min-width:330px;font-size: 18px;">
+                                <t t-if='line.price_unit > 0.0'></t>
                                 <span t-field="line.name"
                                     style="padding-left: 10px;padding-right: 10px;white-space: pre-wrap;" />
+
                             </td>
                             <td class="text-center"
                                 style="width: 90px;max-width:90px; min-width:90px;">
-                                <t t-if="line.quantity > 0">
+                                <t t-if='line.price_unit > 0.0'>
                                     <span t-field="line.quantity"
                                         style="padding-left: 10px;padding-right: 5px;" />
                                 </t>
                             </td>
                             <td class="text-center"
                                 style="width: 75px;max-width:75px; min-width:75px;">
-                                <span t-field="line.product_uom_id"
-                                    style="padding-left: 10px;padding-right: 5px;" />
+                                <t t-if='line.price_unit > 0.0'>
+                                    <span t-field="line.product_uom_id"
+                                        style="padding-left: 10px;padding-right: 5px;" />
+                                </t>
                             </td>
                             <td class="text-right"
                                 style="width: 125px;width: 125px;max-width:125px; min-width:125px;">
@@ -133,16 +139,16 @@
                             </td>
                             <td class="text-right"
                                 style="width: 75px;max-width:75px; min-width:75px;">
-                                <t t-if='line.discount > 0.0'>
+                                <t t-if='line.price_unit > 0.0'>
                                     <span t-esc="'{0:,.0f} %'.format(line.discount)"
                                         style="margin-top:10px;" />
                                 </t>
                             </td>
                             <td class="text-right"
                                 style="width: 150px;width: 150px;max-width:150px; min-width:150px;">
-                                <t t-if='line.price_subtotal > 0.0'>
-                                    <span t-field="line.price_subtotal"
-                                        style="padding-left: 5px;padding-right: 5px;" />
+                                <t t-if='line.price_unit > 0.0'>
+                                    <span style="padding-left: 5px;padding-right: 5px;"
+                                        t-esc="'{0:,.2f}'.format(o.amount_total)" />
                                 </t>
                             </td>
                         </tr>
@@ -151,46 +157,36 @@
             </div>
             <div class="page"
                 style="position: absolute;
-                                        top: 967px;
+                                        top: 997px;
                                         font-size: 25px;
                                         text-align: right;
                                         padding-left: 970px;
                                         right: 70px;">
-                <p t-esc="'{0:,.2f} ฿'.format(o.amount_untaxed)"
+                <p t-esc="'{0:,.2f}'.format(o.amount_untaxed)"
                     style="margin-top:-10px;" />
-                <p t-esc="'{0:,.2f} ฿'.format(o.amount_tax)"
+                <p t-esc="'{0:,.2f}'.format(o.amount_tax)"
                     style="margin-top:-10px;" />
-                <p t-esc="'{0:,.2f} ฿'.format(o.amount_total)"
+                <p t-esc="'{0:,.2f}'.format(o.amount_total)"
                     style="margin-top:-14px;" />
 
             </div>
             <div class="page"
                 style="position: absolute;
-                                        top: 1040px;">
+                                        top: 1070px;">
                 <!-- amount to text -->
                 <t t-set="amount_to_text"
                     t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(o.amount_total)" />
                 <t t-set="amount_split" t-value="amount_to_text.split(' ')" />
-                <t t-if="len(amount_split) > 2">
+                <t t-if="len(amount_split) &gt; 2">
                     <t t-set="amount_text_thai"
                         t-value="''.join([amount_split[0], 'บาท', amount_split[3], 'สตางค์'])" />
                 </t>
                 <t t-else="">
-                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0], 'บาทถ้วน'])" />
+                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0]])" />
                 </t>
                 <p style="padding-left: 100px;">
                     <b style="font-size: 25px;" t-esc=" '('+ amount_text_thai +')' " />
                 </p>
-            </div>
-            <!-- ส่วนของ Description -->
-            <div class="page"
-                style="font-size: 15px;
-                                        position: absolute;
-                                        top: 1080px;
-                                        min-width: 1050px;
-                                        max-width:1050px;
-                                        padding-left: 90px;">
-                <span t-field="o.narration" style="padding-left: 5px;" />
             </div>
         </div>
     </template>

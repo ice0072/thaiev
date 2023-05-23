@@ -8,7 +8,7 @@
                 <div class="col-3" name="col_left"
                     style="padding-top: 147px; padding-left: 40px;font-size: 25px;">
                     <p t-field="o.name" />
-                    <p style="margin-top:-15px;" t-field="o.date" />
+                    <p style="margin-top:-17px;" t-esc="o.get_formatted_date(o.date)" />
                 </div>
             </div>
             <div class="row" style="padding-left: 60px;position: absolute;top: 225px;">
@@ -74,7 +74,7 @@
                                         margin-left: 45px;
                                         margin-top: 70px;
                                         position: absolute;
-                                        top: 282px;">
+                                        top: 329px;">
                 <table
                     style="table-layout: fixed;padding: 10px 10px; height:648px;min-height:648px;max-height:648px;"
                     class="text-center">
@@ -132,7 +132,7 @@
             <!-- sum amount total -->
             <div class="page"
                 style="position: absolute;
-                        top: 1013px;
+                        top: 1060px;
                         font-size: 25px;
                         text-align: right;
                         padding-left: 970px;
@@ -144,16 +144,16 @@
             <!-- amount to text -->
             <div class="page"
                 style="position: absolute;
-                                        top: 1000px;">
+                                        top: 1047px;">
                 <t t-set="amount_to_text"
-                    t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(total_amount)" />
+                    t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(o.amount_total)" />
                 <t t-set="amount_split" t-value="amount_to_text.split(' ')" />
                 <t t-if="len(amount_split) &gt; 2">
                     <t t-set="amount_text_thai"
                         t-value="''.join([amount_split[0], 'บาท', amount_split[3], 'สตางค์'])" />
                 </t>
                 <t t-else="">
-                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0], 'บาทถ้วน'])" />
+                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0]])" />
                 </t>
                 <p style="padding-left: 100px;">
                     <b style="font-size: 25px;" t-esc=" '('+ amount_text_thai +')' " />

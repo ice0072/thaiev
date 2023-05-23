@@ -8,7 +8,7 @@
                 <div class="col-3" name="col_left"
                     style="padding-top: 147px; padding-left: 40px;font-size: 25px;">
                     <p t-field="o.name" />
-                    <p style="margin-top:-15px;" t-field="o.date_order" />
+                    <p style="margin-top:-15px;" t-esc="o.date_order.strftime('%d/%m/%Y')" />
                 </div>
             </div>
             <div class="row" style="padding-left: 60px;position: absolute;top: 225px;">
@@ -166,7 +166,7 @@
                         t-value="''.join([amount_split[0], 'บาท', amount_split[3], 'สตางค์'])" />
                 </t>
                 <t t-else="">
-                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0], 'บาทถ้วน'])" />
+                    <t t-set="amount_text_thai" t-value="''.join([amount_split[0]])" />
                 </t>
                 <p style="padding-left: 100px;">
                     <b style="font-size: 25px;" t-esc=" '('+ amount_text_thai +')' " />
