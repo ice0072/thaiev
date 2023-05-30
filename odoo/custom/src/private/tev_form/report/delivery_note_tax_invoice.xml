@@ -38,15 +38,13 @@
                             </td>
                         </tr>
                         <tr>
+                            <td style="width: 80px;max-width:80px; min-width:80px;">
+                                <b style="font-size: 20px;">โทร / Tel :</b>
+                            </td>
                             <t t-if="o.partner_id.mobile">
-                                <tr>
-                                    <td style="width: 80px;max-width:80px; min-width:80px;">
-                                        <b style="font-size: 20px;">โทร / Tel :</b>
-                                    </td>
-                                    <td>
-                                        <span t-field="o.partner_id.mobile" />
-                                    </td>
-                                </tr>
+                                <td>
+                                    <span t-field="o.partner_id.mobile" />
+                                </td>
                             </t>
                         </tr>
 
@@ -81,7 +79,7 @@
                     </t>
                     <t t-if='o.invoice_date_due'>
                         <p style="margin-top:-27px;padding-left: 150px;"
-                            t-field="o.invoice_date_due" />
+                            t-esc="o.get_formatted_date(o.invoice_date_due)"/>
                     </t>
                 </div>
             </div>
@@ -114,7 +112,7 @@
                             <td
                                 style="width: 330px;max-width:330px; min-width:330px;font-size: 18px;">
                                 <t t-if='line.price_unit > 0.0'>
-                                    <span t-field="line.name"
+                                    <span t-esc="line.name.replace('['+line.product_id.default_code+']','')"
                                         style="padding-left: 10px;padding-right: 10px;white-space: pre-wrap;" />
                                 </t>
                             </td>
@@ -150,7 +148,7 @@
                                 style="width: 150px;width: 150px;max-width:150px; min-width:150px;">
                                 <t t-if='line.price_unit > 0.0'>
                                     <span style="padding-left: 5px;padding-right: 5px;"
-                                        t-esc="'{0:,.2f}'.format(o.amount_total)" />
+                                        t-esc="'{0:,.2f}'.format(line.price_subtotal)" />
                                 </t>
                             </td>
                         </tr>
