@@ -2,14 +2,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "ThaiEV: Account",
+    "name": "ThaiEV: Sale",
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "category": "Thai EV",
     "author": "Ecosoft",
     "installable": True,
-    "depends": ["account"],
+    "depends": ["sale"],
     "data": [
-        "views/account_payment_view.xml",
+        "data/ir_module_category_data.xml",
+        "views/sale_views.xml",
     ],
 }
