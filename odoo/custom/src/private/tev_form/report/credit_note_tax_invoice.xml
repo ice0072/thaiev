@@ -38,15 +38,13 @@
                             </td>
                         </tr>
                         <tr>
+                            <td style="width: 80px;max-width:80px; min-width:80px;">
+                                <b style="font-size: 20px;">โทร / Tel :</b>
+                            </td>
                             <t t-if="o.partner_id.mobile">
-                                <tr>
-                                    <td style="width: 80px;max-width:80px; min-width:80px;">
-                                        <b style="font-size: 20px;">โทร / Tel :</b>
-                                    </td>
-                                    <td>
-                                        <span t-field="o.partner_id.mobile" />
-                                    </td>
-                                </tr>
+                                <td>
+                                    <span t-field="o.partner_id.mobile" />
+                                </td>
                             </t>
                         </tr>
                         <tr>
