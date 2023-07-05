@@ -2,6 +2,7 @@
     <template id="tev_delivery_note_tax_invoice_custom_form">
         <link href="//db.onlinewebfonts.com/c/e6a66ad34a680b8090172c85e4fece1d?family=Angsana+New"
             rel="stylesheet" />
+
         <div class="container" style="font-family:Angsana New">
             <div class="row">
                 <div class="col-9" />
@@ -11,6 +12,7 @@
                     <p style="margin-top:-17px;" t-esc="o.get_formatted_date(o.invoice_date)" />
                 </div>
             </div>
+
             <div class="row" style="padding-left: 60px;position: absolute;top: 225px;">
                 <div class="col-6" name="col_left"
                     style="font-size: 18px;max-width:600px; min-width:600px;">
@@ -65,10 +67,9 @@
                                 <span>สำนักงานใหญ่</span>
                             </td>
                         </tr>
-
                     </table>
-
                 </div>
+                
                 <div class="col-5" style="font-size: 25px;">
                     <t t-if='o.invoice_origin'>
                         <p style="padding-top: 1px;padding-left: 150px;"
@@ -99,6 +100,7 @@
                 <table style="table-layout: fixed;padding: 10px 10px;">
                     <t t-foreach="o.invoice_line_ids" t-as="line">
                         <tr>
+                            <!-- Column ID no. -->
                             <td
                                 style="width: 155px;max-width:155px; min-width:155px; text-align: center;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -109,13 +111,22 @@
                             <td style="width: 10px;max-width:10px; min-width:10px;">
                                 <span />
                             </td>
+                            <!-- Column Description -->
                             <td
                                 style="width: 330px;max-width:330px; min-width:330px;font-size: 18px;">
                                 <t t-if='line.price_unit > 0.0'>
-                                    <span t-esc="line.name.replace('['+line.product_id.default_code+']','')"
-                                        style="padding-left: 10px;padding-right: 10px;white-space: pre-wrap;" />
+                                    <t t-if="line.product_id.default_code">
+                                        <span
+                                            t-esc="line.name.replace('['+line.product_id.default_code+']','')"
+                                            style="padding-left: 10px;padding-right: 10px;white-space: pre-wrap;" />
+                                    </t>
+                                    <t t-if="not line.product_id.default_code">
+                                        <span t-field="line.name"
+                                            style="padding-left: 10px;padding-right: 10px;white-space: pre-wrap;" />
+                                    </t>
                                 </t>
                             </td>
+                            <!-- Column Quantity -->
                             <td class="text-center"
                                 style="width: 90px;max-width:90px; min-width:90px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -123,6 +134,7 @@
                                         style="padding-left: 10px;padding-right: 5px;" />
                                 </t>
                             </td>
+                            <!-- Column Unit -->
                             <td class="text-center"
                                 style="width: 75px;max-width:75px; min-width:75px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -130,6 +142,7 @@
                                         style="padding-left: 10px;padding-right: 5px;" />
                                 </t>
                             </td>
+                            <!-- Column Unit Price -->
                             <td class="text-right"
                                 style="width: 125px;width: 125px;max-width:125px; min-width:125px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -137,6 +150,7 @@
                                         style="padding-left: 5px;padding-right: 5px;" />
                                 </t>
                             </td>
+                            <!-- Column Discount -->
                             <td class="text-right"
                                 style="width: 75px;max-width:75px; min-width:75px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -144,6 +158,7 @@
                                         style="margin-top:10px;" />
                                 </t>
                             </td>
+                            <!-- Column Amount -->
                             <td class="text-right"
                                 style="width: 150px;width: 150px;max-width:150px; min-width:150px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -155,6 +170,7 @@
                     </t>
                 </table>
             </div>
+
             <div class="page"
                 style="position: absolute;
                                         top: 997px;
@@ -170,10 +186,11 @@
                     style="margin-top:-14px;" />
 
             </div>
+
+            <!-- amount to text -->
             <div class="page"
                 style="position: absolute;
                                         top: 1070px;">
-                <!-- amount to text -->
                 <t t-set="amount_to_text"
                     t-value="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(o.amount_total)" />
                 <t t-set="amount_split" t-value="amount_to_text.split(' ')" />
