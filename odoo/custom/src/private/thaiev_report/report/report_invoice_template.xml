@@ -108,12 +108,14 @@
                                 t-value="o.sudo()._get_reconciled_info_JSON_values()"
                             />
                             <t t-foreach="payments_vals" t-as="payment_vals">
-                                <p>
-                                    <t
-                                        t-esc="payment_vals['date']"
-                                        t-options='{"widget": "date"}'
-                                    />
-                                </p>
+                                <t t-if="payment_vals['name']">
+                                    <p>
+                                        <t
+                                            t-esc="payment_vals['date']"
+                                            t-options='{"widget": "date"}'
+                                        />
+                                    </p>
+                                </t>
                             </t>
                         </t>
                         <t t-elif="print_receipt and o.payment_state != 'paid'">
