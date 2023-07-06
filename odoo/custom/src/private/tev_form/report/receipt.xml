@@ -1,4 +1,5 @@
-<odoo>    <template id="tev_receipt_custom_form">
+<odoo>
+    <template id="tev_receipt_custom_form">
         <link href="//db.onlinewebfonts.com/c/e6a66ad34a680b8090172c85e4fece1d?family=Angsana+New"
             rel="stylesheet" />
         <div class="container" style="font-family:Angsana New">
@@ -15,7 +16,7 @@
                     style="font-size: 18px;max-width:600px; min-width:600px;">
                     <table style="table-layout: fixed;padding: 10px 10px; ">
                         <tr>
-                            <td style="width: 140px;max-width:140px; min-width:140px;">
+                            <td style="width: 205px;max-width:205px; min-width:205px;">
                                 <b style="font-size: 20px;">ชื่อบริษัท / Company : </b>
                             </td>
                             <td>
@@ -26,7 +27,7 @@
                             <td style="width: 140px;max-width:140px; min-width:140px;">
                                 <b style="font-size: 20px;">ที่อยู่บริษัท / Address :</b>
                             </td>
-                            <td style="width: 350px;max-width:350px; min-width:350px;">
+                            <td style="width: 303px;max-width:303px; min-width:303px;">
                                 <span t-field="o.partner_id.street" />
                                 <span></span>
                                 <span t-field="o.partner_id.street2" />
@@ -83,28 +84,29 @@
                                         font-size: 25px;
                                         min-width: 1015px;
                                         max-width:1015px;
-                                        min-height:648px;
-                                        max-height:648px;
+                                        height:640px;
+                                        min-height:640px;
+                                        max-height:640px;
                                         margin-left: 45px;
                                         margin-top: 137px;
                                         position: absolute;
                                         top: 354px;">
                 <table
-                    style="table-layout: fixed;padding: 10px 10px; height:648px;min-height:648px;max-height:648px;"
+                    style="table-layout: fixed;padding: 10px 10px; "
                     class="text-center">
                     <tr>
                         <th
-                            style="height:25px; width: 200px; max-width:200px; min-width:200px; border-right:2px solid black; ">
+                            style="height:25px; width: 200px; max-width:200px; min-width:200px; ">
                             วันที่ใบกำกับภาษี<p style="margin-top:-15px;">Tax Invoice Date</p></th>
                         <th
-                            style="width: 238px; max-width:238px; min-width:238px; border-right:2px solid black; ">
+                            style="width: 238px; max-width:238px; min-width:238px; ">
                             เลขที่ใบกำกับภาษี<p style="margin-top:-15px;">Tax Invoice Number</p></th>
                         <th
-                            style="width: 230px; max-width:230px; min-width:230px; border-right:2px solid black; ">
-                            จำนวนเงิน<p style="margin-top:-15px;">Original Amount</p></th>
+                            style="width: 230px; max-width:230px; min-width:230px;  "> จำนวนเงิน<p
+                                style="margin-top:-15px;">Original Amount</p></th>
                         <th
-                            style="width: 198px; max-width:198px; min-width:198px; border-right:2px solid black; ">
-                            ยอดชำระ<p style="margin-top:-15px;">Amount Paid</p></th>
+                            style="width: 198px; max-width:198px; min-width:198px; "> ยอดชำระ<p
+                                style="margin-top:-15px;">Amount Paid</p></th>
                         <th style="width: 148px; max-width:148px; min-width:148px; ">ยอดคงเหลือ<p
                                 style="margin-top:-15px;">Balance</p></th>
                     </tr>
@@ -115,27 +117,30 @@
                         <t t-if="line.move_type!='out_refund'">
                             <t t-set="total_amount" t-value="total_amount+line.amount_total" />
                             <tr>
-                                <td style="border-right:2px solid black;">
-                                    <p t-esc="o.get_formatted_date(line.invoice_date)" />
+                                <!-- Data in Column Tax Invoice Date -->
+                                <td>
+                                    <p
+                                        t-esc="o.get_formatted_date(line.invoice_date)" />
                                 </td>
-
-                                <td style="border-right:2px solid black;">
+                                <!-- Data in Column Tax Invoice Number -->
+                                <td>
                                     <p t-esc="line.name" />
                                 </td>
-
+                                <!-- Data in Column Original Amount -->
                                 <td
-                                    style="border-right:2px solid black; text-align: right; padding-right: 6px;">
+                                    style="text-align: right; padding-right: 6px;">
                                     <p t-esc="'{0:,.2f}'.format(line.amount_total)" />
                                 </td>
-
+                                <!-- Data in Column Amount Paid -->
                                 <td
-                                    style="border-right:2px solid black; text-align: right; padding-right: 6px;">
+                                    style="text-align: right; padding-right: 6px;">
                                     <p
                                         t-esc="'{0:,.2f}'.format(line.amount_total - line.amount_residual)" />
                                 </td>
-
+                                <!-- Data in Column Balance -->
                                 <td style="text-align: right; padding-right: 6px;">
-                                    <p t-esc="'{0:,.2f}'.format(line.amount_residual)" />
+                                    <p
+                                        t-esc="'{0:,.2f}'.format(line.amount_residual)" />
                                 </td>
                             </tr>
                         </t>
@@ -151,7 +156,7 @@
                         text-align: right;
                         padding-left: 970px;
                         right: 70px;">
-                <p t-esc="'{0:,.2f}'.format(total_amount)"
+                <p t-esc="'{0:,.2f}'.format(o.amount)"
                     style="margin-top:-12px; " />
             </div>
 
@@ -173,7 +178,23 @@
                     <b style="font-size: 25px;" t-esc=" '('+ amount_text_thai +')' " />
                 </p>
             </div>
-            
+
+            <!-- note ท้ายเอกสาร -->
+            <div class="page"
+                style=" font-size: 23px;
+                        position: absolute;
+                        top: 1184px;
+                        padding-left: 10px;
+                        width:1000px;
+                        margin-left:50px;">
+                <span>ชำระเงินโดย : </span><input style="width:18px; height:18px; margin-left:2px;" /><span style="margin-left:2px;"> เงินสด</span>
+                <input style="width:18px; height:18px; margin-left:2px;" /><span style="margin-left:2px;"> เช็คธนาคาร........................................</span>
+                <span style="margin-left:2px;"> เลขที่เช็ค..........................................</span><span style="margin-left:2px;"> ลงวันที่........................</span>
+                <span style="margin-left:2px;"> จำนวนเงิน.................................</span><p/>
+                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารกสิกรไทย สาขาถนนศรีนครินทร์กม.9 บัญชีออมทรัพย์ เลขที่ 036-1-58387-6</span><p/>
+                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารกสิกรไทย สาขาถนนสาธุประดิษฐ์ บัญชีออมทรัพย์ เลขที่ 018-3-91106-6</span><p/>
+                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารไทยพาณิชย์ สาขาเซ็นทรัลพระราม3 บัญชีออมทรัพย์ เลขที่ 165-2-85986-9</span>
+            </div>
         </div>
     </template>
 

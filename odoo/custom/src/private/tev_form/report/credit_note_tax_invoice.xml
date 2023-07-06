@@ -2,7 +2,10 @@
     <template id="tev_credit_note_tax_invoice_custom_form">
         <link href="//db.onlinewebfonts.com/c/e6a66ad34a680b8090172c85e4fece1d?family=Angsana+New"
             rel="stylesheet" />
+        
         <div class="container" style="font-family:Angsana New">
+            
+            <!-- ส่วนของ เลขที่เอกสาร กับ วันที่ -->
             <div class="row">
                 <div class="col-9" />
                 <div class="col-3" name="col_left"
@@ -11,10 +14,14 @@
                     <p style="margin-top:-17px;" t-esc="o.get_formatted_date(o.invoice_date)" />
                 </div>
             </div>
+
+            <!-- รายละเอียดของ partner -->
             <div class="row" style="padding-left: 60px;position: absolute;top: 225px;">
                 <div class="col-6" name="col_left"
                     style="font-size: 18px;max-width:600px; min-width:600px;">
                     <table style="table-layout: fixed;padding: 10px 10px;">
+                        
+                        <!-- ชื่อบริษัท / Company -->
                         <tr>
                             <td style="width: 205px;max-width:205px; min-width:205px;">
                                 <b style="font-size: 20px;">ชื่อบริษัท / Company : </b>
@@ -23,6 +30,8 @@
                                 <span t-field="o.partner_id.name" />
                             </td>
                         </tr>
+
+                        <!-- ที่อยู่บริษัท / Address -->
                         <tr>
                             <td style="width: 140px;max-width:140px; min-width:140px;">
                                 <b style="font-size: 20px;">ที่อยู่บริษัท / Address :</b>
@@ -34,9 +43,10 @@
                                 <span t-field="o.partner_id.city" />
                                 <span t-field="o.partner_id.state_id.name" />
                                 <span t-field="o.partner_id.zip" />
-
                             </td>
                         </tr>
+
+                        <!-- เบอร์โทร/ Tel -->
                         <tr>
                             <td style="width: 80px;max-width:80px; min-width:80px;">
                                 <b style="font-size: 20px;">โทร / Tel :</b>
@@ -47,6 +57,8 @@
                                 </td>
                             </t>
                         </tr>
+
+                        <!-- เลขประจำตัวผู้เสียภาษีอากร / Tax ID -->
                         <tr>
                             <td style="width: 80px;max-width:80px; min-width:80px;">
                                 <b style="font-size: 20px;">เลขประจำตัวผู้เสียภาษีอากร / Tax ID:</b>
@@ -56,6 +68,7 @@
                             </td>
                         </tr>
 
+                        <!-- สาขาที่ / Tax Branch -->
                         <tr>
                             <td style="width: 80px;max-width:80px; min-width:80px;">
                                 <b style="font-size: 20px;">สาขาที่ / Tax Branch:</b>
@@ -65,8 +78,9 @@
                             </td>
                         </tr>
                     </table>
-
                 </div>
+
+                <!-- ส่วนของ อ้างถึง/Ref กับ ใบกำกับภาษีเลขที่ และ ใบกำกับภาษีวันที่ -->
                 <div class="col-5" style="font-size: 22px;">
                     <t t-if='o.ref'>
                         <p style="padding-top: 4px;padding-left: 50px;" t-field="o.ref" />
@@ -75,7 +89,7 @@
                         <p style="padding-top: 5px; padding-left: 150px;color:white;" t-esc="'.'" />
                     </t>
                     <p style="margin-top:-24px; padding-left: 210px;" t-esc="o.old_invoice(o.ref)" />
-                    <p style="margin-top:-24px; padding-left: 210px;" t-esc="o.old_invoice_date()" />
+                    <p style="margin-top:-24px; padding-left: 210px;" t-esc="o.get_formatted_date(o.old_invoice_date())" />
                 </div>
             </div>
 
@@ -94,6 +108,7 @@
                 <table style="table-layout: fixed;padding: 10px 10px;">
                     <t t-foreach="o.invoice_line_ids" t-as="line">
                         <tr>
+                            <!-- Column ID no. -->
                             <td style="width: 155px;max-width:155px; min-width:155px;">
                                 <t t-if='line.price_unit > 0.0'>
                                     <span t-field="line.product_id.default_code"
@@ -103,13 +118,24 @@
                             <td style="width: 10px;max-width:10px; min-width:10px;">
                                 <span />
                             </td>
+
+                            <!-- Column Description -->
                             <td
                                 style="width: 330px;max-width:330px; min-width:330px;font-size: 18px;">
                                 <t t-if='line.price_unit > 0.0'>
-                                    <span t-field="line.name"
-                                        style="padding-left: 10px;padding-right: 10px;white-space: pre-wrap;" />
+                                    <t t-if="line.product_id.default_code">
+                                        <span
+                                            t-esc="line.name.replace('['+line.product_id.default_code+']','')"
+                                            style="padding-left: 10px;padding-right: 10px;white-space: pre-wrap;" />
+                                    </t>
+                                    <t t-if="not line.product_id.default_code">
+                                        <span t-field="line.name"
+                                            style="padding-left: 10px;padding-right: 10px;white-space: pre-wrap;" />
+                                    </t>
                                 </t>
                             </td>
+
+                            <!-- Column Quantity -->
                             <td class="text-center"
                                 style="width: 90px;max-width:90px; min-width:90px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -117,6 +143,8 @@
                                         style="padding-left: 10px;padding-right: 5px;" />
                                 </t>
                             </td>
+
+                            <!-- Column Unit -->
                             <td class="text-center"
                                 style="width: 75px;max-width:75px; min-width:75px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -124,6 +152,8 @@
                                         style="padding-left: 10px;padding-right: 5px;" />
                                 </t>
                             </td>
+
+                            <!-- Column Unit Price -->
                             <td class="text-right"
                                 style="width: 125px;width: 125px;max-width:125px; min-width:125px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -131,6 +161,8 @@
                                         style="padding-left: 5px;padding-right: 5px;" />
                                 </t>
                             </td>
+
+                            <!-- Column Discount -->
                             <td class="text-right"
                                 style="width: 75px;max-width:75px; min-width:75px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -138,6 +170,8 @@
                                         style="margin-top:10px;" />
                                 </t>
                             </td>
+
+                            <!-- Column Amount -->
                             <td class="text-right"
                                 style="width: 150px;width: 150px;max-width:150px; min-width:150px;">
                                 <t t-if='line.price_unit > 0.0'>
@@ -149,6 +183,8 @@
                     </t>
                 </table>
             </div>
+            
+            <!-- ส่วนของรวมยอด -->
             <div class="page"
                 style="position: absolute;
                                         top: 1063px;
