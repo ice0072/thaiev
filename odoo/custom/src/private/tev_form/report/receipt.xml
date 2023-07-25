@@ -66,11 +66,12 @@
                             </td>
                         </tr>
                     </table>
-
                 </div>
-                <div class="col-5" style="font-size: 25px;">
+
+                <div class="col-5"
+                    style="font-size: 25px; padding-left: 22px; width: 410px; max-width: 410px; min-width: 410px;">
                     <t t-if='o.ref'>
-                        <p style="padding-top: 1px;padding-left: 40px;" t-field="o.ref" />
+                        <p style="padding-top: 1px;padding-left: 10px;" t-field="o.ref" />
                     </t>
                     <t t-else="">
                         <p style="padding-top: 2px;padding-left: 150px;color:white;" t-esc="'.'" />
@@ -135,7 +136,7 @@
                                 <td
                                     style="text-align: right; padding-right: 6px;">
                                     <p
-                                        t-esc="'{0:,.2f}'.format(line.amount_total - line.amount_residual)" />
+                                        t-esc="'{0:,.2f}'.format(-o.credit_note_reference.amount_total)" />
                                 </td>
                                 <!-- Data in Column Balance -->
                                 <td style="text-align: right; padding-right: 6px;">
@@ -156,7 +157,7 @@
                         text-align: right;
                         padding-left: 970px;
                         right: 70px;">
-                <p t-esc="'{0:,.2f}'.format(o.amount)"
+                <p t-esc="'{0:,.2f}'.format(-o.credit_note_reference.amount_total)"
                     style="margin-top:-12px; " />
             </div>
 
@@ -181,19 +182,38 @@
 
             <!-- note ท้ายเอกสาร -->
             <div class="page"
-                style=" font-size: 23px;
+                style=" font-size: 16px;
                         position: absolute;
-                        top: 1184px;
-                        padding-left: 10px;
+                        top: 1182px;
+                        padding-left: 100px;
                         width:1000px;
                         margin-left:50px;">
-                <span>ชำระเงินโดย : </span><input style="width:18px; height:18px; margin-left:2px;" /><span style="margin-left:2px;"> เงินสด</span>
-                <input style="width:18px; height:18px; margin-left:2px;" /><span style="margin-left:2px;"> เช็คธนาคาร........................................</span>
-                <span style="margin-left:2px;"> เลขที่เช็ค..........................................</span><span style="margin-left:2px;"> ลงวันที่........................</span>
-                <span style="margin-left:2px;"> จำนวนเงิน.................................</span><p/>
-                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารกสิกรไทย สาขาถนนศรีนครินทร์กม.9 บัญชีออมทรัพย์ เลขที่ 036-1-58387-6</span><p/>
-                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารกสิกรไทย สาขาถนนสาธุประดิษฐ์ บัญชีออมทรัพย์ เลขที่ 018-3-91106-6</span><p/>
-                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารไทยพาณิชย์ สาขาเซ็นทรัลพระราม3 บัญชีออมทรัพย์ เลขที่ 165-2-85986-9</span>
+                <span>ชำระเงินโดย : </span>
+                <input style="width:18px; height:18px; margin-left:2px;" />
+                <span style="margin-left:2px;"> เงินสด</span>
+                <input style="width:18px; height:18px; margin-left:2px;" />
+                <span style="margin-left:2px;">
+                    เช็คธนาคาร...................................................</span>
+                <span style="margin-left:2px;"> เลขที่เช็ค................................................</span>
+                <span style="margin-left:2px;"> ลงวันที่....................................</span>
+                <span style="margin-left:2px;"> จำนวนเงิน......................................</span>
+                <p />
+                <input style="width:18px; height:18px; margin-left:92px;" />
+                <span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด"
+                    ธนาคารกสิกรไทย สาขาถนนศรีนครินทร์กม.9 บัญชีออมทรัพย์ เลขที่ 036-1-58387-6</span>
+                <p />
+                <input style="width:18px; height:18px; margin-left:92px;" />
+                <span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด"
+                    ธนาคารกสิกรไทย สาขาถนนสาธุประดิษฐ์ บัญชีออมทรัพย์ เลขที่ 018-3-91106-6</span>
+                <p />
+                <input style="width:18px; height:18px; margin-left:92px;" />
+                <span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด"
+                    ธนาคารไทยพาณิชย์ สาขาเซ็นทรัลพระราม3 บัญชีออมทรัพย์ เลขที่ 165-2-85986-9</span>
+                <p />
+                <input style="width:18px; height:18px; margin-left:92px;" />
+                <span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด"
+                    ธนาคาร............................................................................เลขที่...............................................................</span>
+                <p />
             </div>
         </div>
     </template>

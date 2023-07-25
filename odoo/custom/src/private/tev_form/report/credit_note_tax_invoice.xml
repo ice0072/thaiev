@@ -2,9 +2,9 @@
     <template id="tev_credit_note_tax_invoice_custom_form">
         <link href="//db.onlinewebfonts.com/c/e6a66ad34a680b8090172c85e4fece1d?family=Angsana+New"
             rel="stylesheet" />
-        
+
         <div class="container" style="font-family:Angsana New">
-            
+
             <!-- ส่วนของ เลขที่เอกสาร กับ วันที่ -->
             <div class="row">
                 <div class="col-9" />
@@ -20,7 +20,7 @@
                 <div class="col-6" name="col_left"
                     style="font-size: 18px;max-width:600px; min-width:600px;">
                     <table style="table-layout: fixed;padding: 10px 10px;">
-                        
+
                         <!-- ชื่อบริษัท / Company -->
                         <tr>
                             <td style="width: 205px;max-width:205px; min-width:205px;">
@@ -88,8 +88,20 @@
                     <t t-else="">
                         <p style="padding-top: 5px; padding-left: 150px;color:white;" t-esc="'.'" />
                     </t>
-                    <p style="margin-top:-24px; padding-left: 210px;" t-esc="o.old_invoice(o.ref)" />
-                    <p style="margin-top:-24px; padding-left: 210px;" t-esc="o.get_formatted_date(o.old_invoice_date())" />
+                    <t t-if="o.ref">
+                        <p style="margin-top:-24px; padding-left: 210px;"
+                            t-esc="o.old_invoice(o.ref)" />
+                    </t>
+                    <t t-else="">
+                        <p style="margin-top:-24px; padding-left: 210px; color:white;" t-esc="'.'" />
+                    </t>
+                    <t t-if="o.ref">
+                        <p style="margin-top:-24px; padding-left: 210px;"
+                            t-esc="o.get_formatted_date(o.old_invoice_date())" />
+                    </t>
+                    <t t-else="">
+                        <p style="margin-top:-24px; padding-left: 210px; color:white;" t-esc="'.'" />
+                    </t>
                 </div>
             </div>
 
@@ -183,7 +195,7 @@
                     </t>
                 </table>
             </div>
-            
+
             <!-- ส่วนของรวมยอด -->
             <div class="page"
                 style="position: absolute;
@@ -192,7 +204,13 @@
                                         text-align: right;
                                         padding-left: 970px;
                                         right: 70px;">
-                <p style="margin-top:-18px;" t-esc="'{0:,.2f}'.format(o.old_amount_total_invoice())" />
+                <t t-if="o.ref">
+                    <p style="margin-top:-18px;"
+                        t-esc="'{0:,.2f}'.format(o.old_amount_total_invoice())" />
+                </t>
+                <t t-else="">
+                    <p style="margin-top:-18px;">0.00</p>
+                </t>
                 <p style="margin-top:-13px;" t-esc="'{0:,.2f}'.format(o.correct_value())" />
                 <p t-esc="'{0:,.2f}'.format(o.amount_untaxed)"
                     style="margin-top:-10px;" />

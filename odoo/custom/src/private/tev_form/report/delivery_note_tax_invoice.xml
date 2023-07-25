@@ -103,7 +103,7 @@
                             <!-- Column ID no. -->
                             <td
                                 style="width: 155px;max-width:155px; min-width:155px; text-align: center;">
-                                <t t-if='line.price_unit > 0.0'>
+                                <t t-if='line.price_unit == 0.0'>
                                     <span t-field="line.product_id.default_code"
                                         style="padding-left: 10px;padding-right: 5px;" />
                                 </t>
@@ -114,7 +114,7 @@
                             <!-- Column Description -->
                             <td
                                 style="width: 330px;max-width:330px; min-width:330px;font-size: 18px;">
-                                <t t-if='line.price_unit > 0.0'>
+                                <t t-if='line.price_unit == 0.0'>
                                     <t t-if="line.product_id.default_code">
                                         <span
                                             t-esc="line.name.replace('['+line.product_id.default_code+']','')"
@@ -129,7 +129,7 @@
                             <!-- Column Quantity -->
                             <td class="text-center"
                                 style="width: 90px;max-width:90px; min-width:90px;">
-                                <t t-if='line.price_unit > 0.0'>
+                                <t t-if='line.price_unit == 0.0'>
                                     <span t-field="line.quantity"
                                         style="padding-left: 10px;padding-right: 5px;" />
                                 </t>
@@ -137,7 +137,7 @@
                             <!-- Column Unit -->
                             <td class="text-center"
                                 style="width: 75px;max-width:75px; min-width:75px;">
-                                <t t-if='line.price_unit > 0.0'>
+                                <t t-if='line.price_unit == 0.0'>
                                     <span t-field="line.product_uom_id"
                                         style="padding-left: 10px;padding-right: 5px;" />
                                 </t>
@@ -145,7 +145,7 @@
                             <!-- Column Unit Price -->
                             <td class="text-right"
                                 style="width: 125px;width: 125px;max-width:125px; min-width:125px;">
-                                <t t-if='line.price_unit > 0.0'>
+                                <t t-if='line.price_unit == 0.0'>
                                     <span t-field="line.price_unit"
                                         style="padding-left: 5px;padding-right: 5px;" />
                                 </t>
@@ -153,7 +153,7 @@
                             <!-- Column Discount -->
                             <td class="text-right"
                                 style="width: 75px;max-width:75px; min-width:75px;">
-                                <t t-if='line.price_unit > 0.0'>
+                                <t t-if='line.price_unit == 0.0'>
                                     <span t-esc="'{0:,.0f} %'.format(line.discount)"
                                         style="margin-top:10px;" />
                                 </t>
@@ -161,7 +161,7 @@
                             <!-- Column Amount -->
                             <td class="text-right"
                                 style="width: 150px;width: 150px;max-width:150px; min-width:150px;">
-                                <t t-if='line.price_unit > 0.0'>
+                                <t t-if='line.price_unit == 0.0'>
                                     <span style="padding-left: 5px;padding-right: 5px;"
                                         t-esc="'{0:,.2f}'.format(line.price_subtotal)" />
                                 </t>
