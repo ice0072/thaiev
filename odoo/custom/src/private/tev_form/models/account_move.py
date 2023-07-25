@@ -12,14 +12,18 @@ class AccountMove(models.Model):
     @staticmethod
     # ดึงชื่ออันเก่า
     def old_invoice(ref):
-        regex_str = r"INV\/\d{4}\/\d{2}\/\d{4}"
+        try:
+            regex_str = r"INV\/\d{4}\/\d{2}\/\d{4}"
 
-        match = re.search(regex_str, ref)
-        if match:
-            output_str = match.group(0)
-            return output_str
-        else:
+            match = re.search(regex_str, f"{ref}")
+            if match:
+                output_str = match.group(0)
+                return output_str
+            else:
+                return False
+        except Exception as e:
             return False
+
     
 
     def old_amount_total_invoice(self):
@@ -28,7 +32,10 @@ class AccountMove(models.Model):
     
     def correct_value(self):
         old_invoice_data=self.env['account.move'].search([('name','=',self.old_invoice(self.ref))])
-        return old_invoice_data[0].amount_untaxed - self.amount_untaxed
+        if old_invoice_data:
+            return old_invoice_data[0].amount_untaxed - self.amount_untaxed
+        else:
+            return 0 - self.amount_untaxed
     
     def old_invoice_date(self):
         old_invoice_data=self.env['account.move'].search([('name','=',self.old_invoice(self.ref))])

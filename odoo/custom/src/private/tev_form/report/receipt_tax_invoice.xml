@@ -204,7 +204,7 @@
             <div class="page"
                 style=" font-size: 23px;
                         position: absolute;
-                        top: 1154px;
+                        top: 1135px;
                         padding-left: 10px;
                         width:1000px;
                         margin-left:50px;">
@@ -214,7 +214,8 @@
                 <span style="margin-left:2px;"> จำนวนเงิน.................................</span><p/>
                 <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารกสิกรไทย สาขาถนนศรีนครินทร์กม.9 บัญชีออมทรัพย์ เลขที่ 036-1-58387-6</span><p/>
                 <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารกสิกรไทย สาขาถนนสาธุประดิษฐ์ บัญชีออมทรัพย์ เลขที่ 018-3-91106-6</span><p/>
-                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารไทยพาณิชย์ สาขาเซ็นทรัลพระราม3 บัญชีออมทรัพย์ เลขที่ 165-2-85986-9</span>
+                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคารไทยพาณิชย์ สาขาเซ็นทรัลพระราม3 บัญชีออมทรัพย์ เลขที่ 165-2-85986-9</span><p/>
+                <input style="width:18px; height:18px; margin-left:92px;" /><span style="margin-left:2px;"> โอนเงิน ชื่อบัญชี "บริษัท ไทยอีวี จำกัด" ธนาคาร............................................................................เลขที่...............................................................</span><p/>
             </div>
         </div>
     </template>
