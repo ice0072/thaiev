@@ -113,35 +113,37 @@
                     </tr>
 
                     <t t-set="total_amount" t-value="0" />
-                    <t t-set="invoice_ids" t-value="o.get_invoices()" />
-                    <t t-foreach="invoice_ids" t-as="line">
-                        <t t-if="line.move_type!='out_refund'">
-                            <t t-set="total_amount" t-value="total_amount+line.amount_total" />
+                    <t t-foreach="o.move_id._get_reconciled_invoices_partials()" t-as="rec">
+                        <t t-set="amount" t-value="rec[1]" />
+                        <t t-set="inv" t-value="rec[2].move_id" />
+                        <t t-if="inv.move_type != 'entry'">
+                            <t t-set="total_amount" t-value="total_amount+amount" />
+
                             <tr>
                                 <!-- Data in Column Tax Invoice Date -->
                                 <td>
                                     <p
-                                        t-esc="o.get_formatted_date(line.invoice_date)" />
+                                        t-esc="o.get_formatted_date(inv.invoice_date)" />
                                 </td>
                                 <!-- Data in Column Tax Invoice Number -->
                                 <td>
-                                    <p t-esc="line.name" />
+                                    <p t-field="inv.name" />
                                 </td>
                                 <!-- Data in Column Original Amount -->
                                 <td
                                     style="text-align: right; padding-right: 6px;">
-                                    <p t-esc="'{0:,.2f}'.format(line.amount_total)" />
+                                    <p t-esc="'{0:,.2f}'.format(inv.amount_total)" />
                                 </td>
                                 <!-- Data in Column Amount Paid -->
                                 <td
                                     style="text-align: right; padding-right: 6px;">
                                     <p
-                                        t-esc="'{0:,.2f}'.format(-o.credit_note_reference.amount_total)" />
+                                        t-esc="'{0:,.2f}'.format(amount)" />
                                 </td>
                                 <!-- Data in Column Balance -->
                                 <td style="text-align: right; padding-right: 6px;">
                                     <p
-                                        t-esc="'{0:,.2f}'.format(line.amount_residual)" />
+                                        t-esc="'{0:,.2f}'.format(inv.amount_residual)" />
                                 </td>
                             </tr>
                         </t>
@@ -157,7 +159,7 @@
                         text-align: right;
                         padding-left: 970px;
                         right: 70px;">
-                <p t-esc="'{0:,.2f}'.format(-o.credit_note_reference.amount_total)"
+                <p t-esc="'{0:,.2f}'.format(total_amount)"
                     style="margin-top:-12px; " />
             </div>
 
@@ -194,7 +196,8 @@
                 <input style="width:18px; height:18px; margin-left:2px;" />
                 <span style="margin-left:2px;">
                     เช็คธนาคาร...................................................</span>
-                <span style="margin-left:2px;"> เลขที่เช็ค................................................</span>
+                <span style="margin-left:2px;">
+                    เลขที่เช็ค................................................</span>
                 <span style="margin-left:2px;"> ลงวันที่....................................</span>
                 <span style="margin-left:2px;"> จำนวนเงิน......................................</span>
                 <p />
